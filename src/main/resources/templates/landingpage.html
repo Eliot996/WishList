@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
 </head>
 <body>
-<header>
-    <h1 style="background-color: darkcyan; width: 100%"> Wishlist Kea </h1>
-</header>
+<div id="site_colour">
+    <div id="site_container">
+        <header th:insert="fragments/headerFragment"></header>
+    </div>
+</div>
 </body>
 </html>
