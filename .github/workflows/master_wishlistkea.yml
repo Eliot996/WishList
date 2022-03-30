@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'WishListKEA'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4C783E6E561F4644972AC6F2084B38A8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DED6DA6669C946C996F0E1C3AA76DE15 }}
           package: '*.jar'
