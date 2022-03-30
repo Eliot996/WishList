@@ -8,4 +8,9 @@ public class Controller {
     public String landingpage() {
         return "landingpage";
     }
+
+    @GetMapping("/fragments")
+    public String getFragment(){
+        return "headerFragment";
+    }
 }
