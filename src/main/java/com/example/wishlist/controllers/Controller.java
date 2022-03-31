@@ -8,4 +8,9 @@ public class Controller {
     public String landingPage() {
         return "landingpage";
     }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
 }
