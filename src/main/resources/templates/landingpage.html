@@ -9,13 +9,17 @@
 <p> hejsa </p>
 <div id="site_colour">
     <div id="site_container">
-        <div style="width: 95%">
+        <div id="content-container">
 
-            <header th:insert="fragments/headerFragment.html :: header"></header>
-            <img id="img_style" style="margin: 20px 20px 20px 20px" src="blue-sky.jpg" height="100%" width="100%" >
+            <header th:insert="fragments/headerFragment.html :: header">
+
+            </header>
+
+                <div id="frontpage-image-container">
+                    <img id="img_style" src="blue-sky.jpg" >
+                </div>
         </div>
     </div>
-
 </div>
 
 <div>
