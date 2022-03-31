@@ -18,4 +18,9 @@ public class Controller {
     public String loginPage(){
         return "login";
     }
+
+    @GetMapping("/registrer")
+    public String registrerPage(){
+        return "registrer";
+    }
 }
