@@ -13,4 +13,9 @@ public class Controller {
     public String getFragments(){
         return "fragments";
     }
+
+    @GetMapping("/login")
+    public String loginPage(){
+        return "login";
+    }
 }
