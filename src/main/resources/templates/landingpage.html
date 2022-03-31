@@ -10,19 +10,21 @@
     <div id="site_container">
         <div id="content-container">
 
-            <header th:insert="fragments/headerFragment.html :: header">
+            <header th:insert="fragments/fragments.html :: header">
 
             </header>
 
-                <div id="frontpage-image-container">
-                    <img id="img_style" src="blue-sky.jpg" >
-                </div>
+            <div id="frontpage-image-container">
+                <img class="img_style" src="blue-sky.jpg" >
+            </div>
+            <div class="padding-div"></div>
+
         </div>
     </div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+
 </div>
 
-<div>
-    <footer th:insert="fragments/footerFragment.html"></footer>
-</div>
+
 </body>
 </html>
