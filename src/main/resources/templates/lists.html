@@ -14,18 +14,24 @@
 
             <header th:insert="fragments/fragments.html :: header"></header>
 
-            <main id="list-of-wishes-boundary">
+            <main  id="list-of-wishes-boundary">
 
-                <section class="list-box">
+                <section th:each="list : ${listOfWishlists}" class="list-box">
                     <div class="list-name">
-
+                        <h2>
+                            - List Name
+                        </h2>
                     </div>
                     <div class="list-buttons">
-
+                        <button class="button">Del</button>
+                        <button class="button">Rediger</button>
+                        <button class="button">Slet</button>
                     </div>
                 </section>
 
             </main>
+
+            <div class="padding-div"></div>
 
         </div>
     </div>

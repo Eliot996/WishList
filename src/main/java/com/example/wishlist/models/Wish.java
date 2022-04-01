@@ -16,4 +16,13 @@ public class Wish {
         this.link = link;
         this.reserver = reserver;
     }
+
+    public Wish(){
+        this.wishlistID = null;
+        this.position = 0;
+        this.title = null;
+        this.description = null;
+        this.link = null;
+        this.reserver = null;
+    }
 }

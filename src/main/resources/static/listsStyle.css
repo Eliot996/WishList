@@ -17,15 +17,25 @@
 }
 
 .list-name{
-    background-color: red;
     width: 40%;
     height: 80%;
     margin: auto;
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
 .list-buttons{
-    background-color: #f44336;
     width: 50%;
     height: 80%;
     margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.list-buttons button{
+    width: 30%;
+    height: 80%;
+
 }
