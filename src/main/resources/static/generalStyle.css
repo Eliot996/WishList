@@ -4,7 +4,6 @@
 }
 
 
-
 #site_colour{
     min-height: 100vh;
     width: 100%;
@@ -17,9 +16,22 @@
     margin: auto;
     background-color: lightskyblue;
     min-height: 100vh;
+
+
 }
 
-#header_box{
+#content-container{
+    width: 95%;
+    margin: auto;
+}
+
+
+/* belongs to header: */
+#header-box{
+    margin-bottom: 20px;
+}
+
+#header-box-text{
     padding-top: 10px;
     display: flex;
     justify-content: center;
@@ -28,44 +40,40 @@
     color: white;
 
 }
-#header_text{
+#header-text{
     font-size: 5vw;
     padding: 10px 40px;
     border: 4px solid #2e6285;
     border-radius: 4px;
 }
 
-#img_style{
-    border: 4px solid #2e6285;
-    border-radius: 4px;
 
-}
 
-#header_content_under_text{
+#header-content-under-text{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
-#create_new_list{
+#create-new-list{
     width: 45%;
 }
-#create_new_list_button{
+#create-new-list-button{
     width: 100%;
     height: 35px;
 }
 
 
-#login_register_buttons{
+#login-register-buttons{
     width: 48%;
     display: flex;
     justify-content: space-around;
 }
 
-#log_in{
+#log-in{
     width: 45%;
 
 }
-#log_in_button {
+#log-in-button {
     width: 100%;
     height: 35px;
 }
@@ -74,7 +82,7 @@
     width: 45%;
 
 }
-#register_button{
+#register-button{
     width: 100%;
     height: 35px;
 }
@@ -86,7 +94,10 @@
     color: white;
 }
 
+/* Belongs to footer: */
+
 #footerstyle{
+    margin-top: 20px;
     width: 100%;
     height: 110%;
     background-color: #2e6285;
@@ -97,4 +108,27 @@
     margin: auto;
     text-align: center;
     color: lightskyblue;
+}
+
+#frontpage-image-container{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+
+}
+
+
+/* general usage */
+.padding-div{
+    padding-top: 20px;
+    width: 100%;
+}
+
+
+.img_style{
+    border: 4px solid #2e6285;
+    border-radius: 4px;
+    width: 98%;
+    height: 100%;
+    display: block;
 }

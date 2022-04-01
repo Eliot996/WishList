@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{loginStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"> </header>
+            <div>
+                <form action="action_page.php" method="post">
+
+                    <div class="container">
+                        <label for="uname"><b>Brugernavn</b></label>
+                        <input type="text" placeholder="Indtast brugernavn" name="uname" required>
+
+                        <label for="psw"><b>Adgangskode</b></label>
+                        <input type="password" placeholder="Indtast adgangskode" name="psw" required>
+
+                        <button type="submit">Log ind</button>
+                        <label>
+                            <input type="checkbox" checked="checked" name="remember"> Husk mig
+                        </label>
+                    </div>
+
+                    <div class="container" style="background-color:white">
+                        <button type="button" class="cancelbtn">Cancel</button>
+                        <span class="psw"> <a style="color:black;" href="#"> Glemt adgangskode?</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+</div>
+
+</body>
+</html>
