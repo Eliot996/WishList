@@ -94,6 +94,19 @@
     color: white;
 }
 
+#footerstyle{
+    width: 100%;
+    height: 110%;
+    background-color: #417154;
+    color: white;
+}
+
+#footer-overskrift {
+    margin: auto;
+    text-align: center;
+    color: white;
+}
+
 /* Belongs to footer: */
 
 #footerstyle{

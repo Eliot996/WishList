@@ -1,6 +1,6 @@
-/* Bordered form */
 form {
     border: 3px solid #2e6285;
+
 }
 
 /* Full-width inputs */
@@ -36,11 +36,8 @@ button:hover {
     background-color: #f44336;
 }
 
-/* Avatar image */
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
+
+
 
 /* Add padding to containers */
 .container {
