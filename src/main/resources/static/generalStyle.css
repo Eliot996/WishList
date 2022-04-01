@@ -45,6 +45,7 @@
     padding: 10px 40px;
     border: 4px solid #2e6285;
     border-radius: 4px;
+    color: white;
 }
 
 
@@ -98,19 +99,6 @@ button:hover{
     color: white;
 }
 
-#footerstyle{
-    width: 100%;
-    height: 110%;
-    background-color: #417154;
-    color: white;
-}
-
-#footer-overskrift {
-    margin: auto;
-    text-align: center;
-    color: white;
-}
-
 /* Belongs to footer: */
 
 #footerstyle{
@@ -118,7 +106,7 @@ button:hover{
     width: 100%;
     height: 110%;
     background-color: #2e6285;
-    color: white;
+
 }
 
 #footer-overskrift {
@@ -127,7 +115,7 @@ button:hover{
     color: lightskyblue;
 }
 
-#frontpage-image-container{
+.frontpage-image-container{
     width: 100%;
     height: 100%;
     margin: auto;
