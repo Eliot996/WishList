@@ -4,14 +4,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @org.springframework.stereotype.Controller
 public class Controller {
-    @GetMapping("/")
-    public String landingPage() {
-        return "landingpage";
-    }
-
     @GetMapping("/fragments")
     public String getFragments(){
         return "fragments";
+    }
+
+    @GetMapping("/")
+    public String landingPage() {
+        return "landingpage";
     }
 
     @GetMapping("/login")
@@ -22,5 +22,10 @@ public class Controller {
     @GetMapping("/registrer")
     public String registrerPage(){
         return "registrer";
+    }
+
+    @GetMapping("/lists")
+    public String getListOfLists(){
+        return "lists";
     }
 }

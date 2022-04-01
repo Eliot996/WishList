@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{listsStyle.css}">
+
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"></header>
+
+            <main id="list-of-wishes-boundary">
+
+                <section class="list-box">
+                    <div class="list-name">
+
+                    </div>
+                    <div class="list-buttons">
+
+                    </div>
+                </section>
+
+            </main>
+
+        </div>
+    </div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+
+</div>
+
+
+</body>
+</html>
