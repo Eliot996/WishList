@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header">
+
+            </header>
+
+            <div class="frontpage-image-container">
+                <img class="img_style" src="pictures/blue-sky.jpg" >
+            </div>
+            <div class="padding-div"></div>
+
+
+            <div class="frontpage-image-container">
+                <div class="img_style">
+                    <p>hej HER SKAL VÆRE ET BILLEDE OG EN TEKST- lav en liste</p>
+                </div>
+            </div>
+
+            <div class="padding-div"></div>
+
+            <div class="frontpage-image-container">
+                <div class="img_style">
+                    <p>hej HER SKAL VÆRE ET BILLEDE OG EN TEKST - login</p>
+                </div>
+            </div>
+
+            <div class="padding-div"></div>
+
+            <div class="frontpage-image-container">
+                <div class="img_style">
+                    <p>hej HER SKAL VÆRE ET BILLEDE OG EN TEKST - registre</p>
+                </div>
+            </div>
+        </div>
+
+    <div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+#list-of-wishes-boundary {
+    border: 2px solid #2e6285;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 400px;
+}
+
+.list-box{
+    width: 95%;
+    height: 80px;
+    border: 2px solid #2e6285;
+    border-radius: 4px;
+    background-color: #528ab0;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.list-name{
+    width: 40%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.list-buttons{
+    width: 50%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.list-buttons button{
+    width: 30%;
+    height: 80%;
+
+}

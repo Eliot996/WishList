@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{registrerStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"> </header>
+            <div>
+                <form action="action_page.php" method="post">
+
+                    <div class="container">
+                        <label for="name"><b>Navn</b></label>
+                        <input type="text" placeholder="Navn" name="uname" required>
+
+                        <label for="email"><b>Email</b></label>
+                        <input type="text" placeholder="Indtast email" name="uname" required>
+
+                        <label for="password"><b>Adgangskode</b></label>
+                        <input type="password" placeholder="Indtast adgangskode" name="psw" required>
+
+                        <button type="submit">Opret bruger</button>
+                    </div>
+
+                    <div class="container" style="background-color:white">
+                        <a href="/">
+                        <button type="button" class="cancelbtn">Cancel</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+
+<div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+</div>
+</body>
+
+</html>
