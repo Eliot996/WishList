@@ -34,4 +34,5 @@ public class Controller {
         model.addAttribute("listOfWishlists", DUMMY_WISHLIST_REPO.getListOfWishlists());
         return "lists";
     }
+
 }
