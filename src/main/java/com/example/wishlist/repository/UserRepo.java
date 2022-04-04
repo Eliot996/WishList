@@ -33,15 +33,41 @@ public class UserRepo {
             e.printStackTrace();
         }
 
+        // TODO: 04/04/2022 add handling of duplicate emails
+
+        ResultSet rs = null;
+        try {
+            stmt.execute();
+            rs = stmt.getResultSet();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return makeUserFromResultSet(rs);
+    }
+
+    public int createToken(int userID, String token) {
+        Connection con = connectionManager.getConnection();
+
+        String insertSQL = "INSERT INTO `login-tokens`(`UserID`, `token`)" +
+                "VALUES (?, ?)";
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement(insertSQL);
+            stmt.setInt(1, userID);
+            stmt.setString(2, token);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         try {
             stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-
-        // TODO: 04/04/2022 add handling of duplicate emails
-        return null;
+        return userID;
     }
 
     public User getUser(int id) {
