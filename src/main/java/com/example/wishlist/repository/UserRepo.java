@@ -70,6 +70,36 @@ public class UserRepo {
         return userID;
     }
 
+    public int getUserIDFromToken(String token) {
+        Connection con = connectionManager.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT UserID FROM `login-tokens` " +
+                    "WHERE `token` = '" + token + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (rs != null) {
+            try {
+                rs.next();
+                return rs.getInt("UserID");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return -1;
+    }
+
     public User getUser(int id) {
         Connection con = connectionManager.getConnection();
 
