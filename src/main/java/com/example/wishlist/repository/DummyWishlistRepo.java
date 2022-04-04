@@ -18,7 +18,6 @@ public class DummyWishlistRepo
     public void fillWishlist(){
         for (int i = 0; i < 10; i ++){
             listOfWishlists.add(new Wishlist(i, "name"+i, listOfWishes, null));
-            System.out.println(listOfWishlists.size());
         }
     }
 
