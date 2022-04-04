@@ -21,17 +21,19 @@ public class Controller {
 
     @GetMapping("/login")
     public String loginPage(HttpSession session, Model model){
+        // check session and redirect if necessary
         int userID = checkTokenAndGetID(session);
-
-        if (userID == -1){
-            model.addAttribute("user", new User());
-            return "login";
+        if (userID != -1){
+            return "redirect:/lists";
         }
-        return "redirect:/lists";
+
+        model.addAttribute("user", new User());
+        return "login";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
+        // check session and break the token if it exists
         int userID = checkTokenAndGetID(session);
         if (userID != -1 ) {
             USER_SERVICE.breakToken(userID);
@@ -43,29 +45,50 @@ public class Controller {
 
     @PostMapping("/login")
     public String loginPage(HttpSession session, @ModelAttribute User user, Model model){
-        String token = USER_SERVICE.login(user.getEmail(), user.getPassword());
-
-        if (token != null) {
-            session.setAttribute("user_token", token);
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID != -1 ) {
+            return "redirect:/lists";
         }
 
-        return "registrer";
+        // login and set token in session
+        String token = USER_SERVICE.login(user.getEmail(), user.getPassword());
+        session.setAttribute("user_token", token);
+
+        return "redirect:/lists";
     }
 
     @GetMapping("/registrer")
-    public String registrerPage(Model model){
+    public String registrerPage(HttpSession session, Model model){
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID != -1 ) {
+            return "redirect:/lists";
+        }
+
+        // return the page
         model.addAttribute("user", new User());
         return "registrer";
     }
 
     @PostMapping("/registrer")
-    public String registrerSubmit(@ModelAttribute User user, Model model){
+    public String registrerSubmit(HttpSession session, @ModelAttribute User user, Model model){
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID != -1 ) {
+            return "redirect:/lists";
+        }
+
+        // create user
+        // TODO: 04/04/2022 log user in when created
         USER_SERVICE.createUser(user.getName(), user.getEmail(), user.getPassword());
+
         return "landingpage";
     }
 
     @GetMapping("/lists")
     public String getListOfLists(HttpSession session, Model model){
+        // check session and redirect if the session is invalid
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
             return "redirect:/login";
@@ -77,6 +100,7 @@ public class Controller {
 
     @GetMapping("/wish")
     public String listOfItems(HttpSession session) {
+        // check session and redirect if the session is invalid
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
             return "redirect:/login";
