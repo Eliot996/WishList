@@ -13,17 +13,17 @@
 
             <header th:insert="fragments/fragments.html :: header"> </header>
             <div>
-                <form action="action_page.php" method="post">
+                <form action="#" th:action="@{/registrer}" th:object="${user}" method="post">
 
                     <div class="container">
-                        <label for="name"><b>Navn</b></label>
-                        <input type="text" placeholder="Navn" name="uname" required>
+                        <label><b>Navn</b></label>
+                        <input type="text" placeholder="Navn" th:field="*{name}" required>
 
-                        <label for="email"><b>Email</b></label>
-                        <input type="text" placeholder="Indtast email" name="uname" required>
+                        <label ><b>Email</b></label>
+                        <input type="text" placeholder="Indtast email" th:field="*{email}" required>
 
-                        <label for="password"><b>Adgangskode</b></label>
-                        <input type="password" placeholder="Indtast adgangskode" name="psw" required>
+                        <label ><b>Adgangskode</b></label>
+                        <input type="password" placeholder="Indtast adgangskode" th:field="*{password}" required>
 
                         <button type="submit">Opret bruger</button>
                     </div>
