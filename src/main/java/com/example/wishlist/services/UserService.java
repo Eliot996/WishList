@@ -108,8 +108,14 @@ public class UserService {
         StringBuilder token = new StringBuilder();
 
         for (int i = 0; i < 255; i++) {
-            token.append(Character.toChars(random.nextInt(94) + 32));
+            token.append(Character.toChars(PEPPER_CHARACTERS.charAt(random.nextInt(PEPPER_CHARACTERS.length()))));
         }
+
+
         return token.toString();
+    }
+
+    public int getUserID(String token) {
+        return USER_REPO.getUserIDFromToken(token);
     }
 }
