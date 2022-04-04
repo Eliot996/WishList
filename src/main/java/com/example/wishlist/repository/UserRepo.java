@@ -16,7 +16,7 @@ public class UserRepo {
 
     }
 
-    public User createUser(String name, String email, String password, String salt) {
+    public User createUser(User user) {
         Connection con = connectionManager.getConnection();
 
         String insertSQL = "INSERT INTO users(`name`, `email`, `password`, `salt`)" +
@@ -25,10 +25,10 @@ public class UserRepo {
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement(insertSQL);
-            stmt.setString(1, name);
-            stmt.setString(2, email);
-            stmt.setString(3, password);
-            stmt.setString(4, salt);
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPassword());
+            stmt.setString(4, user.getSalt());
         } catch (SQLException e) {
             e.printStackTrace();
         }
