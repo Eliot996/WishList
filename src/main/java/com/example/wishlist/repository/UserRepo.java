@@ -39,6 +39,8 @@ public class UserRepo {
             e.printStackTrace();
         }
 
+
+        // TODO: 04/04/2022 add handling of duplicate emails
         return null;
     }
 
