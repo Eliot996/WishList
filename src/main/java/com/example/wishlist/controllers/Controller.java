@@ -21,11 +21,24 @@ public class Controller {
 
     @GetMapping("/login")
     public String loginPage(HttpSession session, Model model){
-        if (session.getAttribute("user_token") == null){
+        int userID = checkTokenAndGetID(session);
+
+        if (userID == -1){
             model.addAttribute("user", new User());
             return "login";
         }
         return "redirect:/lists";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        int userID = checkTokenAndGetID(session);
+        if (userID != -1 ) {
+            USER_SERVICE.breakToken(userID);
+        }
+
+        session.invalidate();
+        return "redirect:/login";
     }
 
     @PostMapping("/login")
@@ -52,13 +65,33 @@ public class Controller {
     }
 
     @GetMapping("/lists")
-    public String getListOfLists(Model model){
+    public String getListOfLists(HttpSession session, Model model){
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
         model.addAttribute("listOfWishlists", new DummyWishlistRepo().getListOfWishlists());
         return "lists";
     }
 
     @GetMapping("/wish")
-    public String listOfItems() {
+    public String listOfItems(HttpSession session) {
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
         return "listOfItems";
+    }
+
+    private int checkTokenAndGetID(HttpSession session) {
+        String token = (String) session.getAttribute("user_token");
+        // check if there is a token
+        if (token == null) {
+            return -1;
+        }
+
+        return USER_SERVICE.getUserID(token);
     }
 }
