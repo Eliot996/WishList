@@ -20,17 +20,55 @@ public class UserService {
 
     public User createUser(String name, String email, String password) {
         String salt = generateSalt();
+        String pepper = String.valueOf(
+                PEPPER_CHARACTERS.charAt(
+                        random.nextInt(PEPPER_CHARACTERS.length())));
 
         User newUser = new User(-1, // marked to signify it is temporary id
                 name,
                 email,
-                hashPassword(password, salt),
+                hashPassword(pepper, password, salt),
                 salt);
 
         return USER_REPO.createUser(newUser);
     }
 
-    private String hashPassword(String password, String salt) {
+    public String login(String email, String password) {
+        // Get the user from the database
+        User user = USER_REPO.getUser(email);
+
+        if (user == null) {
+            return null;
+        }
+
+        if (checkPassword(user.getPassword(), user.getSalt(), password)) {
+            String token = generateToken();
+
+            USER_REPO.createToken(user.getID(), token);
+
+            return token;
+        } else {
+            return null;
+        }
+    }
+
+    private boolean checkPassword(String userPassword, String userSalt, String passwordToCheck) {
+        String hashToCheck;
+
+        for (int i = 0; i < PEPPER_CHARACTERS.length(); i++) {
+            System.out.println("checking: " + PEPPER_CHARACTERS.substring(i, i+1));
+            hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i+1),
+                         passwordToCheck,
+                         userSalt);
+            if (hashToCheck.equals(userPassword)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private String hashPassword(String pepper, String password, String salt) {
         MessageDigest digest = null;
 
         try {
@@ -38,10 +76,6 @@ public class UserService {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
-        String pepper = String.valueOf(
-                PEPPER_CHARACTERS.charAt(
-                        random.nextInt(PEPPER_CHARACTERS.length())));
 
         byte[] encodedHash = digest.digest((pepper + password + salt).getBytes(StandardCharsets.UTF_8));
 
@@ -68,5 +102,14 @@ public class UserService {
             salt.append(Character.toChars(random.nextInt(94) + 32));
         }
         return salt.toString();
+    }
+
+    private String generateToken() {
+        StringBuilder token = new StringBuilder();
+
+        for (int i = 0; i < 255; i++) {
+            token.append(Character.toChars(random.nextInt(94) + 32));
+        }
+        return token.toString();
     }
 }
