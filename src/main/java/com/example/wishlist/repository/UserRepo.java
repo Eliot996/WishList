@@ -62,6 +62,10 @@ public class UserRepo {
             e.printStackTrace();
         }
 
+        return makeUserFromResultSet(rs);
+    }
+
+    private User makeUserFromResultSet(ResultSet rs) {
         User user = null;
         try {
             while(rs.next()){
@@ -77,6 +81,28 @@ public class UserRepo {
         }
 
         return user;
+    }
+
+    public User getUser(String email) {
+        Connection con = connectionManager.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM users " +
+                    "WHERE `email` = \'" + email + "\';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return makeUserFromResultSet(rs);
+
     }
 
     public static UserRepo getInstance() {
