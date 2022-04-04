@@ -15,6 +15,10 @@ public class User {
         this.salt = salt;
     }
 
+    public User() {
+
+    }
+
     public int getID() {
         return ID;
     }
@@ -33,5 +37,17 @@ public class User {
 
     public String getSalt() {
         return salt;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
