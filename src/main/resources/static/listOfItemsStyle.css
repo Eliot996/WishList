@@ -14,7 +14,6 @@
 .section-container{
     width: 90%;
     margin: auto;
-
 }
 
 hr{
@@ -31,6 +30,7 @@ hr{
     height: 30px;
 }
 
-
-
+#about-1{
+    height: 0;
+}
 

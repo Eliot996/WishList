@@ -17,26 +17,31 @@
                     <div class="list-of-items-space">
                         <p> - Ting </p>
                         <p> - Link/URL </p>
-                        <button class="button-style button"> Se Mere</button>
+                        <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere</button >
+                    </div>
+                    <div id="about-1">
+
                     </div>
                     <hr>
                 </section>
 
-                <section class="section-container">
+                <section id="section-2" class="section-container">
                     <div class="list-of-items-space">
                         <p> - Ting </p>
                         <p> - Link/URL </p>
                         <button class="button-style button"> Se Mere</button>
                     </div>
+
                     <hr>
                 </section>
 
-                <section class="section-container">
+                <section id="section-3" class="section-container">
                     <div class="list-of-items-space">
                         <p> - Ting </p>
                         <p> - Link/URL </p>
                         <button class="button-style button"> Se Mere</button>
                     </div>
+
                     <hr>
                 </section>
 
@@ -49,5 +54,22 @@
 <div>
     <footer th:insert="fragments/fragments.html :: footer"></footer>
 </div>
+<script>
+    sectionOneInfo = false;
+
+    function seeMore(sectionID){
+        switch (sectionID){
+            case "button1":
+                if (sectionOneInfo === false){
+                    document.getElementById("about-1").style.height = "50px";
+                    sectionOneInfo = true;
+                } else if (sectionOneInfo === true){
+                    document.getElementById("about-1").style.height = "0";
+                    sectionOneInfo = false
+                }
+                break;
+        }
+    }
+</script>
 </body>
 </html>
