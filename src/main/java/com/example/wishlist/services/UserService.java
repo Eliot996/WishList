@@ -118,4 +118,8 @@ public class UserService {
     public int getUserID(String token) {
         return USER_REPO.getUserIDFromToken(token);
     }
+
+    public void breakToken(int userID) {
+        USER_REPO.removeToken(userID);
+    }
 }
