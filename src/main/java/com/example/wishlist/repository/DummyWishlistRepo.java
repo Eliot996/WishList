@@ -22,7 +22,6 @@ public class DummyWishlistRepo
     }
 
     public List<Wishlist> getListOfWishlists(){
-        System.out.println(this.listOfWishlists.size());
         return listOfWishlists;
     }
 
