@@ -2,10 +2,7 @@ package com.example.wishlist.repository;
 
 import com.example.wishlist.models.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserRepo {
 
@@ -163,5 +160,17 @@ public class UserRepo {
 
     public static UserRepo getInstance() {
         return INSTANCE;
+    }
+
+    public void removeToken(int userID) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM `login-tokens` WHERE UserID = "+ userID +";");
+            stmt.execute();
+            System.out.println("killed in database");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
