@@ -1,5 +1,6 @@
 package com.example.wishlist.controllers;
 
+import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.models.User;
 import com.example.wishlist.repository.DummyWishlistRepo;
 import com.example.wishlist.services.UserService;
@@ -13,7 +14,7 @@ public class Controller {
     private final UserService USER_SERVICE = new UserService();
 
     @GetMapping("/")
-    public String landing() {
+    public String landingPage() {
         return "landingpage";
     }
 
@@ -38,5 +39,10 @@ public class Controller {
     public String getListOfLists(Model model){
         model.addAttribute("listOfWishlists", new DummyWishlistRepo().getListOfWishlists());
         return "lists";
+    }
+
+    @GetMapping("/wish")
+    public String listOfItems() {
+        return "listOfItems";
     }
 }

@@ -14,4 +14,8 @@ public class Wishlist {
         this.wishes = wishes;
         this.owner = owner;
     }
+
+    public String getName() {
+        return name;
+    }
 }
