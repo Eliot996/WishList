@@ -32,10 +32,12 @@ public class Controller {
 
     @GetMapping("/lists")
     public String getListOfLists(Model model){
-        
-
-        model.addAttribute("listOfWishlists", DUMMY_WISHLIST_REPO.getListOfWishlists());
+        model.addAttribute("listOfWishlists", new DummyWishlistRepo().getListOfWishlists());
         return "lists";
     }
 
+    @GetMapping("/wish")
+    public String listOfItems() {
+        return "listOfItems";
+    }
 }

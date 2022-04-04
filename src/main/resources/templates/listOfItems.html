@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{listOfItemsStyle.css}">
+
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+            <header th:insert="fragments/fragments.html :: header"></header>
+            <main id="main-container">
+                <section class="section-container">
+                    <div class="list-of-items-space">
+                        <p> - Ting </p>
+                        <p> - Link/URL </p>
+                        <button class="button-style button"> Se Mere</button>
+                    </div>
+                    <hr>
+                </section>
+
+                <section class="section-container">
+                    <div class="list-of-items-space">
+                        <p> - Ting </p>
+                        <p> - Link/URL </p>
+                        <button class="button-style button"> Se Mere</button>
+                    </div>
+                    <hr>
+                </section>
+
+                <section class="section-container">
+                    <div class="list-of-items-space">
+                        <p> - Ting </p>
+                        <p> - Link/URL </p>
+                        <button class="button-style button"> Se Mere</button>
+                    </div>
+                    <hr>
+                </section>
+
+                <div class="padding-div"></div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+</div>
+</body>
+</html>
