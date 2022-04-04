@@ -3,7 +3,8 @@ CREATE SCHEMA `wishlist` ;
 CREATE TABLE `wishlist`.`users` (
                                     `ID` INT NOT NULL AUTO_INCREMENT,
                                     `email` VARCHAR(255) NOT NULL,
-                                    `password` VARCHAR(255) NOT NULL,
+                                    `password` VARCHAR(32) NOT NULL,
+                                    `salt` VARCHAR(16) NOT NULL,
                                     `name` VARCHAR(100) NOT NULL,
                                     PRIMARY KEY (`ID`),
                                     UNIQUE INDEX `email_UNIQUE` (`email` ASC));
