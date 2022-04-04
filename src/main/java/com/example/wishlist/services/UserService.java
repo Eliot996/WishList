@@ -6,8 +6,10 @@ import com.example.wishlist.repository.UserRepo;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 public class UserService {
+    private final String PEPPER_CHARACTERS = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
     private final UserRepo USER_REPO = UserRepo.getInstance();
 
     public User getUser(int id) {
@@ -53,7 +55,13 @@ public class UserService {
         return hexString.toString();
     }
 
-    private String generateSalt() { // TODO: 04/04/2022 implement
-        return "0123456789abcdef";
+    private String generateSalt() {
+        Random random = new Random();
+        StringBuilder salt = new StringBuilder();
+
+        for (int i = 0; i < 16; i++) {
+            salt.append(Character.toChars(random.nextInt(94) + 32));
+        }
+        return salt.toString();
     }
 }
