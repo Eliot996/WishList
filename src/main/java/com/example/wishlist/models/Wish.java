@@ -25,4 +25,5 @@ public class Wish {
         this.link = null;
         this.reserver = null;
     }
+
 }
