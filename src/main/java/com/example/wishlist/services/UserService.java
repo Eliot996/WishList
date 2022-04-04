@@ -9,8 +9,10 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class UserService {
-    private final String PEPPER_CHARACTERS = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
     private final UserRepo USER_REPO = UserRepo.getInstance();
+
+    private final Random random = new Random();
+    private final String PEPPER_CHARACTERS = "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789";
 
     public User getUser(int id) {
         return USER_REPO.getUser(id);
@@ -37,7 +39,11 @@ public class UserService {
             e.printStackTrace();
         }
 
-        byte[] encodedHash = digest.digest((password+salt).getBytes(StandardCharsets.UTF_8));
+        String pepper = String.valueOf(
+                PEPPER_CHARACTERS.charAt(
+                        random.nextInt(PEPPER_CHARACTERS.length())));
+
+        byte[] encodedHash = digest.digest((pepper + password + salt).getBytes(StandardCharsets.UTF_8));
 
 
         return bytesToHex(encodedHash);
@@ -56,7 +62,6 @@ public class UserService {
     }
 
     private String generateSalt() {
-        Random random = new Random();
         StringBuilder salt = new StringBuilder();
 
         for (int i = 0; i < 16; i++) {
