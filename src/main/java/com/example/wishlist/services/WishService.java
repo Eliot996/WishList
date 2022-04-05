@@ -49,4 +49,8 @@ public class WishService {
     public void deleteWish(int wishlistID, int wishPosition) {
         WISH_REPO.deleteWish(wishlistID, wishPosition);
     }
+
+    public void deleteWishes(int wishlistID) {
+        WISH_REPO.deleteWishes(wishlistID);
+    }
 }
