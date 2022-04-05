@@ -1,18 +1,19 @@
 package com.example.wishlist.models;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 public class Wishlist {
     private int ID;
     private String name;
-    private ArrayList<Wish> wishes = new ArrayList<>();
+    private List<Wish> wishes = null;
     private int userID;
 
     public Wishlist(){
 
     }
 
-    public Wishlist(int ID, String name, ArrayList<Wish> wishes, int userID) {
+    public Wishlist(int ID, String name, List<Wish> wishes, int userID) {
         this.ID = ID;
         this.name = name;
         this.wishes = wishes;
@@ -41,11 +42,11 @@ public class Wishlist {
         this.name = name;
     }
 
-    public ArrayList<Wish> getWishes() {
+    public List<Wish> getWishes() {
         return wishes;
     }
 
-    public void setWishes(ArrayList<Wish> wishes) {
+    public void setWishes(List<Wish> wishes) {
         this.wishes = wishes;
     }
 
