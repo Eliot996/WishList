@@ -20,9 +20,7 @@ public class UserService {
 
     public User createUser(String name, String email, String password) {
         String salt = generateSalt();
-        String pepper = String.valueOf(
-                PEPPER_CHARACTERS.charAt(
-                        random.nextInt(PEPPER_CHARACTERS.length())));
+        String pepper = generatePepper();
 
         User newUser = new User(-1, // marked to signify it is temporary id
                 name,
@@ -31,6 +29,12 @@ public class UserService {
                 salt);
 
         return USER_REPO.createUser(newUser);
+    }
+
+    private String generatePepper() {
+        return String.valueOf(
+                PEPPER_CHARACTERS.charAt(
+                        random.nextInt(PEPPER_CHARACTERS.length())));
     }
 
     public String login(String email, String password) {
@@ -119,5 +123,26 @@ public class UserService {
 
     public void breakToken(int userID) {
         USER_REPO.removeToken(userID);
+    }
+
+    public void updateUser(User user, int userID) {
+        User oldUser = USER_REPO.getUser(userID);
+
+        if (!user.getName().equals(oldUser.getName())) {
+            System.out.println("change name");
+            USER_REPO.updateName(userID, user.getName());
+        }
+
+        if (!user.getEmail().equals(oldUser.getEmail())) {
+            System.out.println("change email");
+            USER_REPO.updateEmail(userID, user.getEmail());
+        }
+
+        if (!user.getPassword().equals("")) {
+            System.out.println("change password");
+            String salt = generateSalt();
+            String hash = hashPassword(generatePepper(), user.getPassword(), salt);
+            USER_REPO.updatePassword(userID, hash, salt);
+        }
     }
 }
