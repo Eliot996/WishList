@@ -149,4 +149,16 @@ public class WishlistRepo {
 
         return wishlists;
     }
+
+    public void delete(int wishlistID) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM `wishlists` " +
+                    "WHERE `ID` = "+ wishlistID +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
