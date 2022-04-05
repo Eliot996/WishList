@@ -1,8 +1,10 @@
 package com.example.wishlist.controllers;
 
 import com.example.wishlist.models.User;
+import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.repository.DummyWishlistRepo;
 import com.example.wishlist.services.UserService;
+import com.example.wishlist.services.WishlistService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpSession;
 @org.springframework.stereotype.Controller
 public class Controller {
     private final UserService USER_SERVICE = new UserService();
+    private final WishlistService WISHLIST_SERVICE = new WishlistService();
 
     // *******************
     // *
@@ -143,6 +146,41 @@ public class Controller {
         USER_SERVICE.updateUser(user, userID);
         return "edit_user";
     }
+
+    // *******************
+    // *
+    // *  create wishlist
+    // *
+    // *******************
+
+    @GetMapping("/create-wishlist")
+    public String createWishlistPage(HttpSession session, Model model) {
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        model.addAttribute("wishlist", new Wishlist());
+        return "create_wishlist";
+    }
+
+    @PostMapping("/create-wishlist")
+    public String createWishlistPage(@ModelAttribute Wishlist wishlist,HttpSession session, Model model) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        int wishlistID = WISHLIST_SERVICE.createWishlist(userID, wishlist);
+
+        System.out.println(wishlistID);
+
+        return "redirect:/wish/" + wishlistID;
+    }
+
+
 
     @GetMapping("/lists")
     public String getListOfLists(HttpSession session, Model model){
