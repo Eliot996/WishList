@@ -6,7 +6,7 @@ public class Wish {
     private String title;
     private String description;
     private String link;
-    private int reserver;
+    private int reserverID;
 
 
     public Wish(){
@@ -19,7 +19,7 @@ public class Wish {
         this.title = title;
         this.description = description;
         this.link = link;
-        this.reserver = reserver;
+        this.reserverID = reserver;
     }
 
     public int getWishlistID() {
@@ -62,11 +62,11 @@ public class Wish {
         this.link = link;
     }
 
-    public int getReserver() {
-        return reserver;
+    public int getReserverID() {
+        return reserverID;
     }
 
-    public void setReserver(int reserver) {
-        this.reserver = reserver;
+    public void setReserverID(int reserverID) {
+        this.reserverID = reserverID;
     }
 }
