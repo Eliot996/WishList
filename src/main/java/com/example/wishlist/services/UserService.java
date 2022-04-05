@@ -56,7 +56,6 @@ public class UserService {
         String hashToCheck;
 
         for (int i = 0; i < PEPPER_CHARACTERS.length(); i++) {
-            System.out.println("checking: " + PEPPER_CHARACTERS.substring(i, i+1));
             hashToCheck = hashPassword(PEPPER_CHARACTERS.substring(i, i+1),
                          passwordToCheck,
                          userSalt);
@@ -64,7 +63,6 @@ public class UserService {
                 return true;
             }
         }
-
         return false;
     }
 
