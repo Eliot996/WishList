@@ -16,8 +16,10 @@ public class UserRepo {
     public User createUser(User user) {
         Connection con = connectionManager.getConnection();
 
-        String insertSQL = "INSERT INTO users(`name`, `email`, `password`, `salt`)" +
-                           "VALUES (?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO users(`name`, `email`, `password`, `salt`) " +
+                           "VALUES (?, ?, ?, ?);";
+        String selectSQL = "SELECT * FROM users " +
+                           "WHERE `email` = \"" + user.getEmail() +  "\";";
 
         PreparedStatement stmt = null;
         try {
@@ -32,15 +34,30 @@ public class UserRepo {
 
         // TODO: 04/04/2022 add handling of duplicate emails
 
-        ResultSet rs = null;
         try {
             stmt.execute();
-            rs = stmt.getResultSet();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return makeUserFromResultSet(rs);
+        ResultSet rs = null;
+        try {
+            stmt = con.prepareStatement(selectSQL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        if (rs != null) {
+            return makeUserFromResultSet(rs);
+        }
+        return null;
     }
 
     public int createToken(int userID, String token) {
