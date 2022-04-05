@@ -25,4 +25,8 @@ public class WishlistService {
     public List<Wishlist> getAllWishlistsFromUser(int userID) {
         return WISHLIST_REPO.getAllWishlistsFromUser(userID);
     }
+
+    public void deleteWishlist(int wishlistID) {
+        WISHLIST_REPO.delete(wishlistID);
+    }
 }
