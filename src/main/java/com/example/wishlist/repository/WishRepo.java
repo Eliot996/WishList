@@ -111,4 +111,85 @@ public class WishRepo {
             e.printStackTrace();
         }
     }
+
+    // TODO: 05/04/2022 needs refactoring
+    public Wish getWish(int wishlistID, int wishPosition) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM wishes " +
+                    "WHERE `WishlistID` = " + wishlistID + " AND `position` = " + wishPosition + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Wish wish = null;
+        try {
+            while(rs.next()){
+                wishlistID  = rs.getInt("WishlistID");
+                int    position    = rs.getInt("position");
+                String title       = rs.getString("title");
+                String description = rs.getString("description");
+                String link        = rs.getString("link");
+                int    reserverID  = rs.getInt("reserverID");
+
+                wish = new Wish(wishlistID, position, title, description, link, reserverID);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wish;
+    }
+
+
+    public void updateTitle(int wishlistID, int wishPosition, String title) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE `wishes` " +
+                    "SET `title` = '" + title + "' " +
+                    "WHERE `WishlistID` = "+ wishlistID +" " +
+                        "AND `position` = " + wishPosition + ";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateLink(int wishlistID, int wishPosition, String link) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE `wishes` " +
+                    "SET `link` = '" + link + "' " +
+                    "WHERE `WishlistID` = "+ wishlistID +" " +
+                    "AND `position` = " + wishPosition + ";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updgetDescription(int wishlistID, int wishPosition, String description) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE `wishes` " +
+                    "SET `description` = '" + description + "' " +
+                    "WHERE `WishlistID` = "+ wishlistID +" " +
+                    "AND `position` = " + wishPosition + ";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
