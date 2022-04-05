@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{registrerStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"> </header>
+            <div>
+                <form action="#" th:action="@{/edit-wishlist/{wishlistID}(wishlistID=${wishlist.getID()})}"
+                      th:object="${wishlist}" method="post">
+
+                    <div class="container">
+                        <label><b>Navn</b></label>
+                        <input type="text" th:placeholder="${wishlist.getName()}" th:field="*{name}">
+
+                        <button type="submit">Updater Ønskeliste</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <footer th:insert="fragments/fragments.html :: footer"></footer>
+    </div>
+</body>
+
+</html>

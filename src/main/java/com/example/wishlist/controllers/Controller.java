@@ -8,6 +8,7 @@ import com.example.wishlist.services.WishlistService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
@@ -175,12 +176,48 @@ public class Controller {
 
         int wishlistID = WISHLIST_SERVICE.createWishlist(userID, wishlist);
 
-        System.out.println(wishlistID);
-
         return "redirect:/wish/" + wishlistID;
     }
 
+    // *******************
+    // *
+    // *  edit wishlist
+    // *
+    // *******************
 
+    @GetMapping("/edit-wishlist/{wishlistID}")
+    public String editWishlistPage(HttpSession session, Model model, @PathVariable() int wishlistID) {
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+
+        if (userID == wishlist.getUserID()) {
+            model.addAttribute("wishlist", wishlist);
+            return "edit_wishlist";
+        } else {
+            return "redirect:/lists";
+        }
+    }
+
+    @PostMapping("/edit-wishlist/{wishlistID}")
+    public String updateWishlist(@ModelAttribute Wishlist wishlist,HttpSession session, Model model, @PathVariable() int wishlistID) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        Wishlist oldWishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (oldWishlist.getUserID() == userID) {
+            WISHLIST_SERVICE.update(oldWishlist, wishlist);
+        }
+
+        return "redirect:/wish/" + wishlistID;
+    }
 
     @GetMapping("/lists")
     public String getListOfLists(HttpSession session, Model model){
