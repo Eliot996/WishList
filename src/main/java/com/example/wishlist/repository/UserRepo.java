@@ -19,7 +19,7 @@ public class UserRepo {
         String insertSQL = "INSERT INTO users(`name`, `email`, `password`, `salt`) " +
                            "VALUES (?, ?, ?, ?);";
         String selectSQL = "SELECT * FROM users " +
-                           "WHERE `email` = \"" + user.getEmail() +  "\";";
+                           "WHERE `email` = '" + user.getEmail() +  "';";
 
         PreparedStatement stmt = null;
         try {
@@ -114,6 +114,36 @@ public class UserRepo {
         return -1;
     }
 
+    public String getTokenFromUserID(int userID) {
+        Connection con = connectionManager.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT `token` FROM `login-tokens` " +
+                    "WHERE `UserID` = " + userID + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if (rs != null) {
+            try {
+                rs.next();
+                return rs.getString("token");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
     public User getUser(int id) {
         Connection con = connectionManager.getConnection();
 
@@ -185,7 +215,46 @@ public class UserRepo {
         try {
             PreparedStatement stmt = con.prepareStatement("DELETE FROM `login-tokens` WHERE UserID = "+ userID +";");
             stmt.execute();
-            System.out.println("killed in database");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateName(int userID, String name) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE users " +
+                                                             "SET `name` = '" + name + "' " +
+                                                             "WHERE `ID` = "+ userID +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEmail(int userID, String email) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE users " +
+                                                             "SET `email` = '" + email + "' " +
+                                                             "WHERE `ID` = "+ userID +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePassword(int userID, String password, String salt) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE users " +
+                                                             "SET `password` = '" + password + "', " +
+                                                             "    `salt` = '" + salt + "' " +
+                                                             "WHERE `ID` = "+ userID +";");
+            stmt.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

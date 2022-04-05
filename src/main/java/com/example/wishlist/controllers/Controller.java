@@ -14,10 +14,22 @@ import javax.servlet.http.HttpSession;
 public class Controller {
     private final UserService USER_SERVICE = new UserService();
 
+    // *******************
+    // *
+    // *  landing page
+    // *
+    // *******************
+
     @GetMapping("/")
     public String landingPage() {
         return "landingpage";
     }
+
+    // **********************
+    // *
+    // *  login management
+    // *
+    // **********************
 
     @GetMapping("/login")
     public String loginPage(HttpSession session, Model model){
@@ -29,18 +41,6 @@ public class Controller {
 
         model.addAttribute("user", new User());
         return "login";
-    }
-
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        // check session and break the token if it exists
-        int userID = checkTokenAndGetID(session);
-        if (userID != -1 ) {
-            USER_SERVICE.breakToken(userID);
-        }
-
-        session.invalidate();
-        return "redirect:/login";
     }
 
     @PostMapping("/login")
@@ -57,6 +57,30 @@ public class Controller {
 
         return "redirect:/lists";
     }
+
+    // *******************
+    // *
+    // *  logout
+    // *
+    // *******************
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        // check session and break the token if it exists
+        int userID = checkTokenAndGetID(session);
+        if (userID != -1 ) {
+            USER_SERVICE.breakToken(userID);
+        }
+
+        session.invalidate();
+        return "redirect:/login";
+    }
+
+    // *******************
+    // *
+    // *  registre user
+    // *
+    // *******************
 
     @GetMapping("/registrer")
     public String registrerPage(HttpSession session, Model model){
@@ -86,6 +110,40 @@ public class Controller {
         return "redirect:/lists";
     }
 
+    // *******************
+    // *
+    // *  Edit user
+    // *
+    // *******************
+
+    @GetMapping("/edit")
+    public String editPage(HttpSession session, Model model){
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        // return the page
+        model.addAttribute("user", USER_SERVICE.getUser(userID));
+        return "edit_user";
+    }
+
+    @PostMapping("/edit")
+    public String updateUserInfo(HttpSession session, @ModelAttribute User user, Model model) {
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        System.out.println(user.getName());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword() == null);
+
+        USER_SERVICE.updateUser(user, userID);
+        return "edit_user";
+    }
+
     @GetMapping("/lists")
     public String getListOfLists(HttpSession session, Model model){
         // check session and redirect if the session is invalid
@@ -108,6 +166,12 @@ public class Controller {
 
         return "listOfItems";
     }
+
+    // *******************
+    // *
+    // *  \/\/\/ helper functions \/\/\/
+    // *
+    // *******************
 
     private int checkTokenAndGetID(HttpSession session) {
         String token = (String) session.getAttribute("user_token");
