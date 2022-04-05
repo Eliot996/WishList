@@ -224,6 +224,31 @@ public class Controller {
 
     // *******************
     // *
+    // *  delete wish
+    // *
+    // *******************
+
+    @GetMapping("/wishlists/{wishlistID}/delete")
+    public String deleteWishlist(HttpSession session, Model model,
+                             @PathVariable() int wishlistID) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() == userID) {
+            WISH_SERVICE.deleteWishes(wishlistID);
+
+            WISHLIST_SERVICE.deleteWishlist(wishlistID);
+        }
+
+        return "redirect:/wishlists";
+    }
+
+    // *******************
+    // *
     // *  view wishlists
     // *
     // *******************
