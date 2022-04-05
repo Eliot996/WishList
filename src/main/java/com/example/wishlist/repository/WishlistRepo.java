@@ -1,6 +1,5 @@
 package com.example.wishlist.repository;
 
-import com.example.wishlist.models.User;
 import com.example.wishlist.models.Wishlist;
 
 import java.sql.Connection;
