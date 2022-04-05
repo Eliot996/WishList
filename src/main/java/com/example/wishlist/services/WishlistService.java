@@ -9,4 +9,8 @@ public class WishlistService {
     public int createWishlist(int userID, Wishlist wishlist) {
         return WISHLIST_REPO.createWishlist(userID, wishlist);
     }
+
+    public Wishlist getWishlistInfo(int wishlistID) {
+        return WISHLIST_REPO.getWishlistInfo(wishlistID);
+    }
 }
