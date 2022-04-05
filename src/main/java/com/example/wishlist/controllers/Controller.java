@@ -86,6 +86,34 @@ public class Controller {
         return "redirect:/lists";
     }
 
+    @GetMapping("/edit")
+    public String editPage(HttpSession session, Model model){
+        // check session and redirect if the session is valid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        // return the page
+        model.addAttribute("user", USER_SERVICE.getUser(userID));
+        return "edit_user";
+    }
+
+    @PostMapping("/edit")
+    public String updateUserInfo(HttpSession session, @ModelAttribute User user, Model model) {
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1 ) {
+            return "redirect:/register";
+        }
+
+        System.out.println(user.getName());
+        System.out.println(user.getEmail());
+        System.out.println(user.getPassword() == null);
+
+        USER_SERVICE.updateUser(user, userID);
+        return "edit_user";
+    }
+
     @GetMapping("/lists")
     public String getListOfLists(HttpSession session, Model model){
         // check session and redirect if the session is invalid
