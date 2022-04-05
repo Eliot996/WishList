@@ -13,35 +13,43 @@
         <div id="content-container">
             <header th:insert="fragments/fragments.html :: header"></header>
             <main id="main-container">
-                <section class="section-container">
-                    <div class="list-of-items-space">
-                        <p> - Ting </p>
-                        <p> - Link/URL </p>
-                        <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere</button >
-                    </div>
-                    <div id="about-1-closed">
-                        <div id="text-about-1-open">
+
+                <h1 th:text="${wishlist.getName()}">navn</h1>
+
+                <div th:if="${wishlist.getWishes.empty}">
+                    <h2>Du har ikke nogle ønsker endnu</h2>
+                </div>
+                <div th:each="wish : ${wishlist.getWishes()}">
+                    <section class="section-container">
+                        <div class="list-of-items-space">
+                            <p th:text="${wish.getTitle()}">title</p>
                             <p>
-                                dfgsdfgsfgsdfg
-                                <br>
-                                asdgsdfg
-                                <br>
-                                dafdag
-                                <br>
-                                zfgdfh
-                                <br>
-                                zfdgfsg
+                                <a th:href="@{${wish.getLink()}}">
+                                    <button class="button button-style"> link </button>
+                                </a>
                             </p>
+                            <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere
+                            </button>
                         </div>
-                        <div style="width: 12%">
-                            <button class="button button-style"> Rediger </button>
-                        </div>
+<!--                        <div id="about-1-closed">&ndash;&gt;-->
+<!--                          <div id="text-about-1-open">&ndash;&gt;-->
+                                <p th:text="${wish.getDescription()}">
+                                    description
+                                </p>
+<!--                            </div>-->
+                            <div style="width: 12%">
+                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                    <button class="button button-style"> Rediger</button>
+                                </a>
+                            </div>
 
-                    </div>
-                    <hr>
-                </section>
+<!--                        </div>-->
+                        <hr>
+                    </section>
 
-                <div class="padding-div"></div>
+
+                    <div class="padding-div"></div>
+                </div>
             </main>
         </div>
     </div>
@@ -53,17 +61,17 @@
 <script>
     sectionOneInfo = false;
 
-    function seeMore(sectionID){
-        switch (sectionID){
-           case "button1":
-               if (sectionOneInfo === false){
-                   document.getElementById("about-1-closed").id = "about-1-open";
-                   sectionOneInfo = true;
-               } else if (sectionOneInfo === true){
-                   document.getElementById("about-1-open").id = "about-1-closed";
-                   sectionOneInfo = false
-               }
-               break;
+    function seeMore(sectionID) {
+        switch (sectionID) {
+            case "button1":
+                if (sectionOneInfo === false) {
+                    document.getElementById("about-1-closed").id = "about-1-open";
+                    sectionOneInfo = true;
+                } else if (sectionOneInfo === true) {
+                    document.getElementById("about-1-open").id = "about-1-closed";
+                    sectionOneInfo = false
+                }
+                break;
         }
     }
 </script>
