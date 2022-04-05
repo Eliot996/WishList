@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilføj ønske</title>
+    <link rel="stylesheet" th:href="@{/generalStyle.css}">
+    <link rel="stylesheet" th:href="@{/registrerStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"> </header>
+            <div>
+                <form action="#" th:action="@{/wishlists/{wishlistID}/add-wish(wishlistID = ${wishlistID})}" th:object="${wish}" method="post">
+
+                    <div class="container">
+                        <label><b>Navn</b></label>
+                        <input type="text" placeholder="Indtast title på ønsket" th:field="*{title}" REQUIRED>
+                        <input type="text" placeholder="Indtast et link til ønsket" th:field="*{link}">
+                        <input type="text" placeholder="Indtast en beskrivelse på ønsket" th:field="*{description}">
+
+                        <button type="submit">Tilføj Ønske</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <footer th:insert="fragments/fragments.html :: footer"></footer>
+    </div>
+</body>
+
+</html>
