@@ -23,6 +23,9 @@
                         <button type="submit">Updater Ønskeliste</button>
                     </div>
                 </form>
+                <a th:href="@{/wishlists/{wishlistID}/delete(wishlistID = ${wishlist.getID()})}">
+                    <button class="button button-style"> Slet ønskeliste</button>
+                </a>
             </div>
         </div>
     </div>
