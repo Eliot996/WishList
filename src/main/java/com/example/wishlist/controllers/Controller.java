@@ -2,8 +2,8 @@ package com.example.wishlist.controllers;
 
 import com.example.wishlist.models.User;
 import com.example.wishlist.models.Wishlist;
-import com.example.wishlist.repository.DummyWishlistRepo;
 import com.example.wishlist.services.UserService;
+import com.example.wishlist.services.WishService;
 import com.example.wishlist.services.WishlistService;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 public class Controller {
     private final UserService USER_SERVICE = new UserService();
     private final WishlistService WISHLIST_SERVICE = new WishlistService();
+    private final WishService WISH_SERVICE = new WishService();
 
     // *******************
     // *
@@ -237,6 +238,12 @@ public class Controller {
         return "lists";
     }
 
+    // *******************
+    // *
+    // *  view a wishlist
+    // *
+    // *******************
+
     @GetMapping("/wishlists/{wishlistID}")
     public String listOfItems(HttpSession session, Model model, @PathVariable() int wishlistID) {
         // check session and redirect if the session is invalid
@@ -245,6 +252,12 @@ public class Controller {
             return "redirect:/login";
         }
 
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() == userID) {
+            WISH_SERVICE.populateWishlist(wishlist);
+
+            model.addAttribute("wishlist", wishlist);
+        }
         return "listOfItems";
     }
 
