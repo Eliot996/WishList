@@ -143,10 +143,6 @@ public class Controller {
             return "redirect:/register";
         }
 
-        System.out.println(user.getName());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword() == null);
-
         USER_SERVICE.updateUser(user, userID);
         return "edit_user";
     }
