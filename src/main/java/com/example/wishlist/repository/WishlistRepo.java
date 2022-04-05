@@ -1,5 +1,6 @@
 package com.example.wishlist.repository;
 
+import com.example.wishlist.models.User;
 import com.example.wishlist.models.Wishlist;
 
 import java.sql.Connection;
@@ -66,5 +67,38 @@ public class WishlistRepo {
 
 
         return -1;
+    }
+
+    public Wishlist getWishlistInfo(int wishlistID) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM wishlists " +
+                    "WHERE `ID` = " + wishlistID + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Wishlist wishlist = null;
+        try {
+            while(rs.next()){
+                int Id = rs.getInt("ID");
+                String userName = rs.getString("name");
+                int userID = rs.getInt("UserID");
+                wishlist = new Wishlist(Id, userName, userID);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wishlist;
     }
 }
