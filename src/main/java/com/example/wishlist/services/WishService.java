@@ -16,4 +16,13 @@ public class WishService {
         // bind to wishlist
         wishlist.setWishes(listOfWishes);
     }
+
+    public void addWish(int wishlistID, Wish wish) {
+
+        int position = WISH_REPO.getAmountOfWishes(wishlistID) + 1; // get the
+        wish.setPosition(position);
+        wish.setWishlistID(wishlistID);
+
+        WISH_REPO.createWish(wish);
+    }
 }

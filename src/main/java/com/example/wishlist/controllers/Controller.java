@@ -1,6 +1,7 @@
 package com.example.wishlist.controllers;
 
 import com.example.wishlist.models.User;
+import com.example.wishlist.models.Wish;
 import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.UserService;
 import com.example.wishlist.services.WishService;
@@ -259,6 +260,49 @@ public class Controller {
             model.addAttribute("wishlist", wishlist);
         }
         return "listOfItems";
+    }
+
+    // *******************
+    // *
+    // *  add a wish
+    // *
+    // *******************
+
+    @GetMapping("/wishlists/{wishlistID}/add-wish")
+    public String addWishPage(HttpSession session, Model model, @PathVariable() int wishlistID) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() != userID) {
+            return "redirect:/wishlists";
+        }
+
+        model.addAttribute("wishlistID");
+        model.addAttribute("wish", new Wish());
+
+        return "add_wish";
+    }
+
+    @PostMapping("/wishlists/{wishlistID}/add-wish")
+    public String addWish(HttpSession session, Model model, @PathVariable() int wishlistID, @ModelAttribute Wish wish) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() == userID) {
+            WISH_SERVICE.addWish(wishlistID, wish);
+
+            return "redirect:/wishlists/" + wishlistID;
+        }
+
+        return "redirect:/wishlists";
     }
 
     // *******************
