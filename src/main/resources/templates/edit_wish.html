@@ -23,12 +23,11 @@
                         <input type="text" th:placeholder="${wish.getDescription()}" th:field="*{description}">
 
                         <button type="submit">Updater Ønske</button>
-
-                        <a th:action="@{/wishlists/{wishlistID}/{wishPosition}/delete(wishlistID = ${wishlistID}, wishPosition = ${wish.getPosition()})}">
-                            <button class="button button-style"> slet ønske</button>
-                        </a>
                     </div>
                 </form>
+                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/delete(wishlistID = ${wishlistID}, wishPosition = ${wish.getPosition()})}">
+                    <button class="button button-style"> Slet ønske</button>
+                </a>
             </div>
         </div>
     </div>

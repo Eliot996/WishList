@@ -6,6 +6,7 @@ import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.UserService;
 import com.example.wishlist.services.WishService;
 import com.example.wishlist.services.WishlistService;
+import org.apache.tomcat.util.descriptor.web.JspConfigDescriptorImpl;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -343,6 +344,31 @@ public class Controller {
         Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
         if (wishlist.getUserID() == userID) {
             WISH_SERVICE.updateWish(wishlistID, wishPosition, wish);
+
+            return "redirect:/wishlists/" + wishlistID;
+        }
+
+        return "redirect:/wishlists";
+    }
+
+    // *******************
+    // *
+    // *  delete wish
+    // *
+    // *******************
+
+    @GetMapping("/wishlists/{wishlistID}/{wishPosition}/delete")
+    public String deleteWish(HttpSession session, Model model,
+                             @PathVariable() int wishlistID, @PathVariable() int wishPosition) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() == userID) {
+            WISH_SERVICE.deleteWish(wishlistID, wishPosition);
 
             return "redirect:/wishlists/" + wishlistID;
         }
