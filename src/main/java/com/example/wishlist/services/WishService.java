@@ -45,4 +45,8 @@ public class WishService {
             WISH_REPO.updgetDescription(wishlistID, wishPosition, wish.getDescription());
         }
     }
+
+    public void deleteWish(int wishlistID, int wishPosition) {
+        WISH_REPO.deleteWish(wishlistID, wishPosition);
+    }
 }
