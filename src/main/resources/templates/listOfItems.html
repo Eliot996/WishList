@@ -50,6 +50,11 @@
 
                     <div class="padding-div"></div>
                 </div>
+
+                <a th:href="@{/wishlists/{wishlistID}/add-wish(wishlistID = ${wishlist.getID()})}">
+                    <button class="button button-style"> Tilføj ønske</button>
+                </a>
+
             </main>
         </div>
     </div>
