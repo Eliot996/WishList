@@ -80,10 +80,10 @@ public class Controller {
         }
 
         // create user
-        // TODO: 04/04/2022 log user in when created
-        USER_SERVICE.createUser(user.getName(), user.getEmail(), user.getPassword());
-
-        return "landingpage";
+        User createdUser = USER_SERVICE.createUser(user.getName(), user.getEmail(), user.getPassword());
+        // log the new user in
+        session.setAttribute("user_token", USER_SERVICE.login(createdUser.getEmail(), user.getPassword()));
+        return "redirect:/lists";
     }
 
     @GetMapping("/lists")
