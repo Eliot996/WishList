@@ -6,7 +6,6 @@ import com.example.wishlist.models.Wishlist;
 import com.example.wishlist.services.UserService;
 import com.example.wishlist.services.WishService;
 import com.example.wishlist.services.WishlistService;
-import org.apache.tomcat.util.descriptor.web.JspConfigDescriptorImpl;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
