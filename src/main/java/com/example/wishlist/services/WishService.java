@@ -53,4 +53,10 @@ public class WishService {
     public void deleteWishes(int wishlistID) {
         WISH_REPO.deleteWishes(wishlistID);
     }
+
+    public void setReservationStatus(int userID, Wishlist wishlist) {
+        for (Wish wish : wishlist.getWishes()) {
+            wish.setReserverStatus(userID);
+        }
+    }
 }
