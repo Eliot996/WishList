@@ -69,4 +69,14 @@ public class Wish {
     public void setReserverID(int reserverID) {
         this.reserverID = reserverID;
     }
+
+    public int setReserverStatus(int userID) {
+        if (reserverID == userID) {
+            reserverID = 1;
+        } else if(reserverID > 0) {
+            reserverID = 2;
+        }
+
+        return reserverID;
+    }
 }
