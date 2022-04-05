@@ -307,6 +307,51 @@ public class Controller {
 
     // *******************
     // *
+    // *  edit wish
+    // *
+    // *******************
+
+    @GetMapping("/wishlists/{wishlistID}/{wishPosition}/edit")
+    public String editWishPage(HttpSession session, Model model, @PathVariable() int wishlistID, @PathVariable() int wishPosition) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() == userID) {
+
+            Wish wish = WISH_SERVICE.getWish(wishlistID, wishPosition);
+
+            model.addAttribute("wish", wish);
+            return "edit_wish";
+        }
+
+        return "redirect:/wishlists";
+    }
+
+    @PostMapping("/wishlists/{wishlistID}/{wishPosition}/edit")
+    public String editWishPage(HttpSession session, Model model, @PathVariable() int wishlistID,
+                               @PathVariable() int wishPosition, @ModelAttribute Wish wish) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        Wishlist wishlist = WISHLIST_SERVICE.getWishlistInfo(wishlistID);
+        if (wishlist.getUserID() == userID) {
+            WISH_SERVICE.updateWish(wishlistID, wishPosition, wish);
+
+            return "redirect:/wishlists/" + wishlistID;
+        }
+
+        return "redirect:/wishlists";
+    }
+
+    // *******************
+    // *
     // *  \/\/\/ helper functions \/\/\/
     // *
     // *******************

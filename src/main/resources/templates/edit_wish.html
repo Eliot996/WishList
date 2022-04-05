@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ændre ønske</title>
+    <link rel="stylesheet" th:href="@{/generalStyle.css}">
+    <link rel="stylesheet" th:href="@{/registrerStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"> </header>
+            <div>
+                <form action="#" th:action="@{/wishlists/{wishlistID}/{wishPosition}/edit(wishlistID = ${wishlistID}, wishPosition = ${wish.getPosition()})}"
+                      th:object="${wish}" method="post">
+
+                    <div class="container">
+                        <label><b>Navn</b></label>
+                        <input type="text" th:placeholder="${wish.getTitle()}" th:field="*{title}" REQUIRED>
+                        <input type="text" th:placeholder="${wish.getLink()}" th:field="*{link}">
+                        <input type="text" th:placeholder="${wish.getDescription()}" th:field="*{description}">
+
+                        <button type="submit">Updater Ønske</button>
+
+                        <a th:action="@{/wishlists/{wishlistID}/{wishPosition}/delete(wishlistID = ${wishlistID}, wishPosition = ${wish.getPosition()})}">
+                            <button class="button button-style"> slet ønske</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <footer th:insert="fragments/fragments.html :: footer"></footer>
+    </div>
+</body>
+
+</html>
