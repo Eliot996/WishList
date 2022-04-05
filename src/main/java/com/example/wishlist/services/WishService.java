@@ -25,4 +25,24 @@ public class WishService {
 
         WISH_REPO.createWish(wish);
     }
+
+    public Wish getWish(int wishlistID, int wishPosition) {
+        return WISH_REPO.getWish(wishlistID, wishPosition);
+    }
+
+    public void updateWish(int wishlistID, int wishPosition, Wish wish) {
+        Wish oldWish = WISH_REPO.getWish(wishlistID, wishPosition);
+
+        if (!wish.getTitle().equals(oldWish.getTitle())) {
+            WISH_REPO.updateTitle(wishlistID, wishPosition, wish.getTitle());
+        }
+
+        if (!wish.getLink().equals(oldWish.getLink())) {
+            WISH_REPO.updateLink(wishlistID, wishPosition, wish.getLink());
+        }
+
+        if (!wish.getDescription().equals(oldWish.getDescription())) {
+            WISH_REPO.updgetDescription(wishlistID, wishPosition, wish.getDescription());
+        }
+    }
 }
