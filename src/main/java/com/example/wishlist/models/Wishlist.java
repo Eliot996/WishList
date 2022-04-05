@@ -6,17 +6,23 @@ public class Wishlist {
     private int ID;
     private String name;
     private ArrayList<Wish> wishes = new ArrayList<>();
-    private User owner;
+    private int userID;
 
     public Wishlist(){
 
     }
 
-    public Wishlist(int ID, String name, ArrayList<Wish> wishes, User owner) {
+    public Wishlist(int ID, String name, ArrayList<Wish> wishes, int userID) {
         this.ID = ID;
         this.name = name;
         this.wishes = wishes;
-        this.owner = owner;
+        this.userID = userID;
+    }
+
+    public Wishlist(int ID, String name, int userID) {
+        this.ID = ID;
+        this.name = name;
+        this.userID = userID;
     }
 
     public int getID() {
@@ -43,11 +49,11 @@ public class Wishlist {
         this.wishes = wishes;
     }
 
-    public User getOwner() {
-        return owner;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setOwner(User owner) {
-        this.owner = owner;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }
