@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{landingpageStyle.css}">
 </head>
 <body>
 <div id="site_colour">
@@ -15,37 +16,45 @@
             </header>
 
             <div class="frontpage-image-container">
-                <img class="img_style" src="pictures/blue-sky.jpg" >
+                <img class="img_style" src="pictures/blue-sky.jpg">
             </div>
             <div class="padding-div"></div>
 
+            <div>
+                <h1 class="header-text-landingpage"> Sådan virker Wishlist:</h1>
+            </div>
+
 
             <div class="frontpage-image-container">
-                <div class="img_style">
-                    <p>hej HER SKAL VÆRE ET BILLEDE OG EN TEKST- lav en liste</p>
-                </div>
+                <p class="text-landingpage"> - På Wishlist kan du oprette ønskelister og ønsker til enhver anledning!<br>
+                    &nbsp;&nbsp;Du kan oprette, slette og redigere et ønske og en ønskeliste når som helst.<br>
+                    <br>
+                    - Du kan dele dine ønsker med dine venner og familie! <br>
+                    &nbsp;&nbsp;De kan reservere et af dine ønsker med blot ét klik, hvilket er med til at
+                    &nbsp;&nbsp;formindske dobbelgaver. <br>
+                    <br>
+                    - Det har aldrig været nemmere for dig og dine venner og familie at finde
+                    &nbsp;&nbsp;gaver til hinanden.<br>
+                    &nbsp;&nbsp;Ingen undskyldning for ikke at komme igang med at lave dine personlige
+                    &nbsp;&nbsp;ønskelister nu.<br>
+                    <br>
+                    - Det eneste der skal til for at komme igang med Wishlist er en bruger!
+                    &nbsp;&nbsp;Dette kan gøres her:
+                    <a href="registrer">
+                    <button type="button" class="register-button-landingpage" >
+                    <p>Registrer</p>
+                    </button>
+                </p>
             </div>
+            </a>
+            </div>
+
 
             <div class="padding-div"></div>
 
-            <div class="frontpage-image-container">
-                <div class="img_style">
-                    <p>hej HER SKAL VÆRE ET BILLEDE OG EN TEKST - login</p>
-                </div>
-            </div>
-
-            <div class="padding-div"></div>
-
-            <div class="frontpage-image-container">
-                <div class="img_style">
-                    <p>hej HER SKAL VÆRE ET BILLEDE OG EN TEKST - registre</p>
-                </div>
-            </div>
+        <div>
+            <footer th:insert="fragments/fragments.html :: footer"></footer>
         </div>
-
-    <div>
-    <footer th:insert="fragments/fragments.html :: footer"></footer>
-    </div>
 
 
 </body>
