@@ -19,7 +19,20 @@
                         <p> - Link/URL </p>
                         <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere</button >
                     </div>
-                    <div id="about-1">
+                    <div id="about-1-closed">
+                        <div style="width: 80%;">
+                            <p>
+                                dfgsdfgsfgsdfg
+                                <br>
+                                asdgsdfg
+                                <br>
+                                dafdag
+                                <br>
+                                zfgdfh
+                                <br>
+                                zfdgfsg
+                            </p>
+                        </div>
 
                     </div>
                     <hr>
@@ -59,15 +72,15 @@
 
     function seeMore(sectionID){
         switch (sectionID){
-            case "button1":
-                if (sectionOneInfo === false){
-                    document.getElementById("about-1").style.height = "50px";
-                    sectionOneInfo = true;
-                } else if (sectionOneInfo === true){
-                    document.getElementById("about-1").style.height = "0";
-                    sectionOneInfo = false
-                }
-                break;
+           case "button1":
+               if (sectionOneInfo === false){
+                   document.getElementById("about-1-closed").id = "about-1-open";
+                   sectionOneInfo = true;
+               } else if (sectionOneInfo === true){
+                   document.getElementById("about-1-open").id = "about-1-closed";
+                   sectionOneInfo = false
+               }
+               break;
         }
     }
 </script>
