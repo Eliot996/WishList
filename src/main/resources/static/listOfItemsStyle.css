@@ -31,13 +31,22 @@ hr{
 }
 
 #about-1-closed{
+    display: flex;
     height: 0;
     min-height: 0;
     overflow: hidden;
 }
 
 #about-1-open{
+    display: flex;
+    justify-content: end;
     min-height: 0;
     overflow: hidden;
+}
+
+#text-about-1-open{
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
 }
 
