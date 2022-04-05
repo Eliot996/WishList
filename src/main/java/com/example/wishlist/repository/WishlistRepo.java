@@ -101,4 +101,18 @@ public class WishlistRepo {
 
         return wishlist;
     }
+
+    public void updateName(Wishlist oldWishlist, String name) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE `wishlists` " +
+                                                             "SET `name` = '" + name + "' " +
+                                                             "WHERE `ID` = "+ oldWishlist.getID() +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
