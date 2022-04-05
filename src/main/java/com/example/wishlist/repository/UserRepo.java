@@ -190,4 +190,44 @@ public class UserRepo {
             e.printStackTrace();
         }
     }
+
+    public void updateName(int userID, String name) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE users " +
+                                                             "SET `name` = '" + name + "' " +
+                                                             "WHERE `ID` = "+ userID +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateEmail(int userID, String email) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE users " +
+                                                             "SET `email` = '" + email + "' " +
+                                                             "WHERE `ID` = "+ userID +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updatePassword(int userID, String password, String salt) {
+        Connection con = connectionManager.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("UPDATE users " +
+                                                             "SET `password` = '" + password + "', " +
+                                                             "    `salt` = '" + salt + "' " +
+                                                             "WHERE `ID` = "+ userID +";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
