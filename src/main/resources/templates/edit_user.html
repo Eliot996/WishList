@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{generalStyle.css}">
+    <link rel="stylesheet" th:href="@{registrerStyle.css}">
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+
+            <header th:insert="fragments/fragments.html :: header"> </header>
+            <div>
+                <form action="#" th:action="@{/edit}" th:object="${user}" method="post">
+
+                    <div class="container">
+                        <label><b>Navn</b></label>
+                        <input type="text" th:placeholder="${user.getName()}" th:field="*{name}">
+
+                        <label ><b>Email</b></label>
+                        <input type="text" th:placeholder="${user.getEmail()}" th:field="*{email}">
+
+                        <label ><b>Adgangskode</b></label>
+                        <input type="password" placeholder="Indtast ny adgangskode" th:field="*{password}">
+
+                        <button type="submit">Updater data</button>
+                    </div>
+
+                    <div class="container" style="background-color:white">
+                        <a href="/">
+                            <button type="button" class="cancelbtn">Cancel</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <footer th:insert="fragments/fragments.html :: footer"></footer>
+    </div>
+</body>
+
+</html>
