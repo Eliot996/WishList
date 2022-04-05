@@ -13,4 +13,10 @@ public class WishlistService {
     public Wishlist getWishlistInfo(int wishlistID) {
         return WISHLIST_REPO.getWishlistInfo(wishlistID);
     }
+
+    public void update(Wishlist oldWishlist, Wishlist wishlist) {
+        if (!oldWishlist.getName().equals(wishlist.getName())) {
+            WISHLIST_REPO.updateName(oldWishlist, wishlist.getName());
+        }
+    }
 }
