@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WishlistRepo {
     private static final WishlistRepo INSTANCE = new WishlistRepo();
@@ -115,4 +117,37 @@ public class WishlistRepo {
         }
     }
 
+    public List<Wishlist> getAllWishlistsFromUser(int userID) {
+
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("SELECT * FROM wishlists " +
+                    "WHERE `UserID` = " + userID + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ResultSet rs = null;
+        try {
+            rs = stmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        ArrayList<Wishlist> wishlists = new ArrayList<>();
+        try {
+            while(rs.next()){
+                int Id = rs.getInt("ID");
+                String userName = rs.getString("name");
+                int wishlistUserID = rs.getInt("UserID");
+                wishlists.add(new Wishlist(Id, userName, wishlistUserID));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return wishlists;
+    }
 }
