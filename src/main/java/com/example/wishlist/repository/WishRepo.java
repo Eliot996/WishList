@@ -192,4 +192,17 @@ public class WishRepo {
             e.printStackTrace();
         }
     }
+
+    public void deleteWish(int wishlistID, int wishPosition) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement stmt = con.prepareStatement("DELETE FROM `wishes` " +
+                    "WHERE `WishlistID` = "+ wishlistID +" " +
+                    "AND `position` = " + wishPosition + ";");
+            stmt.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
