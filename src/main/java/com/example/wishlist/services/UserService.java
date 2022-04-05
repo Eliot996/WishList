@@ -46,9 +46,14 @@ public class UserService {
         }
 
         if (checkPassword(user.getPassword(), user.getSalt(), password)) {
-            String token = generateToken();
+            // todo: check if there is a token already
+            String token = USER_REPO.getTokenFromUserID(user.getID());
 
-            USER_REPO.createToken(user.getID(), token);
+            if (token == null) {
+                token = generateToken();
+
+                USER_REPO.createToken(user.getID(), token);
+            }
 
             return token;
         } else {
