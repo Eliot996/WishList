@@ -280,6 +280,12 @@ public class Controller {
             WISH_SERVICE.populateWishlist(wishlist);
 
             model.addAttribute("wishlist", wishlist);
+        } else if (wishlist.getUserID() != userID) {
+            WISH_SERVICE.populateWishlist(wishlist);
+            WISH_SERVICE.setReservationStatus(userID, wishlist);
+
+            model.addAttribute("wishlist", wishlist);
+            return "listOfItems_reserve";
         }
         return "listOfItems";
     }
@@ -395,6 +401,28 @@ public class Controller {
         }
 
         return "redirect:/wishlists";
+    }
+
+    // *******************
+    // *
+    // *  reserve wish
+    // *
+    // *******************
+
+    @GetMapping("/wishlists/{wishlistID}/{wishPosition}/reserve")
+    public String reserveWish(HttpSession session, Model model,
+                             @PathVariable() int wishlistID, @PathVariable() int wishPosition) {
+        // check session and redirect if the session is invalid
+        int userID = checkTokenAndGetID(session);
+        if (userID == -1){
+            return "redirect:/login";
+        }
+
+        System.out.println("hit reserve wish");
+
+        WISH_SERVICE.reserveWish(wishlistID, wishPosition, userID);
+
+        return "redirect:/wishlists/" + wishlistID;
     }
 
     // *******************

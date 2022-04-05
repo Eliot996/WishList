@@ -42,7 +42,7 @@ public class WishService {
         }
 
         if (!wish.getDescription().equals(oldWish.getDescription())) {
-            WISH_REPO.updgetDescription(wishlistID, wishPosition, wish.getDescription());
+            WISH_REPO.updateDescription(wishlistID, wishPosition, wish.getDescription());
         }
     }
 
@@ -57,6 +57,17 @@ public class WishService {
     public void setReservationStatus(int userID, Wishlist wishlist) {
         for (Wish wish : wishlist.getWishes()) {
             wish.setReserverStatus(userID);
+        }
+    }
+
+    public void reserveWish(int wishlistID, int wishPosition, int userID) {
+        Wish wish = WISH_REPO.getWish(wishlistID, wishPosition);
+
+        if (wish.getReserverID() == 0) {
+            WISH_REPO.updateReserverID(wishlistID, wishPosition, userID);
+        }
+        if (wish.getReserverID() == userID) {
+            WISH_REPO.updateReserverID(wishlistID, wishPosition, 0);
         }
     }
 }

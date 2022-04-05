@@ -179,7 +179,7 @@ public class WishRepo {
         }
     }
 
-    public void updgetDescription(int wishlistID, int wishPosition, String description) {
+    public void updateDescription(int wishlistID, int wishPosition, String description) {
         Connection con = CONNECTION_MANAGER.getConnection();
 
         try {
@@ -191,6 +191,26 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void updateReserverID(int wishlistID, int wishPosition, int userID) {
+        Connection con = CONNECTION_MANAGER.getConnection();
+
+        try {
+            PreparedStatement abbandon = con.prepareStatement( "SET foreign_key_checks = 0;");
+            PreparedStatement stmt = con.prepareStatement("UPDATE `wishes` " +
+                    "SET `reserverID` = '" + userID + "' " +
+                    "WHERE `WishlistID` = "+ wishlistID +" " +
+                    "AND `position` = " + wishPosition + "; ");
+            PreparedStatement reset = con.prepareStatement( "SET foreign_key_checks = 1;");
+
+            abbandon.execute();
+            stmt.execute();
+            reset.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void deleteWish(int wishlistID, int wishPosition) {

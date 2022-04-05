@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/generalStyle.css}">
+    <link rel="stylesheet" th:href="@{/listOfItemsStyle.css}">
+
+</head>
+<body>
+<div id="site_colour">
+    <div id="site_container">
+        <div id="content-container">
+            <header th:insert="fragments/fragments.html :: header"></header>
+            <main id="main-container">
+
+                <h1 th:text="${wishlist.getName()}">navn</h1>
+
+                <div th:if="${wishlist.getWishes.empty}">
+                    <h2>Der er ikke nogle ønsker endnu</h2>
+                </div>
+                <div th:each="wish : ${wishlist.getWishes()}">
+                    <section class="section-container">
+                        <div class="list-of-items-space">
+                            <p th:text="${wish.getTitle()}">title</p>
+                            <p>
+                                <a th:href="@{${wish.getLink()}}">
+                                    <button class="button button-style"> link </button>
+                                </a>
+                            </p>
+                            <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere
+                            </button>
+                        </div>
+                        <!--                        <div id="about-1-closed">&ndash;&gt;-->
+                        <!--                          <div id="text-about-1-open">&ndash;&gt;-->
+                        <p th:text="${wish.getDescription()}">
+                            description
+                        </p>
+                        <!--                            </div>-->
+                        <div th:if="${wish.getReserverID() == 0}">
+                            <div style="width: 12%">
+                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                    <button class="button button-style"> Reserver</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div th:if="${wish.getReserverID() == 1}">
+                            <div style="width: 12%">
+                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                    <button class="button button-style"> Fortryd reservation</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div th:if="${wish.getReserverID() == 2}">
+                            <div style="width: 12%">
+                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                    <button class="button button-style"> Reserveret</button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--                        </div>-->
+                        <hr>
+                    </section>
+
+
+                    <div class="padding-div"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+<div>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
+</div>
+<script>
+    sectionOneInfo = false;
+
+    function seeMore(sectionID) {
+        switch (sectionID) {
+            case "button1":
+                if (sectionOneInfo === false) {
+                    document.getElementById("about-1-closed").id = "about-1-open";
+                    sectionOneInfo = true;
+                } else if (sectionOneInfo === true) {
+                    document.getElementById("about-1-open").id = "about-1-closed";
+                    sectionOneInfo = false
+                }
+                break;
+        }
+    }
+</script>
+</body>
+</html>
