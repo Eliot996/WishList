@@ -66,7 +66,7 @@ public class WishlistRepo {
             e.printStackTrace();
         }
 
-
+        CONNECTION_MANAGER.closeConnection();
         return -1;
     }
 
@@ -100,6 +100,7 @@ public class WishlistRepo {
             e.printStackTrace();
         }
 
+        CONNECTION_MANAGER.closeConnection();
         return wishlist;
     }
 
@@ -111,6 +112,7 @@ public class WishlistRepo {
                                                              "SET `name` = '" + name + "' " +
                                                              "WHERE `ID` = "+ oldWishlist.getID() +";");
             stmt.execute();
+            CONNECTION_MANAGER.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -147,6 +149,7 @@ public class WishlistRepo {
             e.printStackTrace();
         }
 
+        CONNECTION_MANAGER.closeConnection();
         return wishlists;
     }
 
@@ -157,6 +160,7 @@ public class WishlistRepo {
             PreparedStatement stmt = con.prepareStatement("DELETE FROM `wishlists` " +
                     "WHERE `ID` = "+ wishlistID +";");
             stmt.execute();
+            CONNECTION_MANAGER.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
