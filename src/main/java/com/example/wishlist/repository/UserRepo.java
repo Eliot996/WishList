@@ -56,8 +56,11 @@ public class UserRepo {
 
         if (rs != null) {
             return makeUserFromResultSet(rs);
+        } else {
+            connectionManager.closeConnection();
+            return null;
         }
-        return null;
+
     }
 
     public int createToken(int userID, String token) {
@@ -81,6 +84,7 @@ public class UserRepo {
             e.printStackTrace();
         }
 
+        connectionManager.closeConnection();
         return userID;
     }
 
@@ -105,12 +109,15 @@ public class UserRepo {
         if (rs != null) {
             try {
                 rs.next();
-                return rs.getInt("UserID");
+                int intToReturn = rs.getInt("UserID");
+                connectionManager.closeConnection();
+                return intToReturn;
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
 
+        connectionManager.closeConnection();
         return -1;
     }
 
@@ -137,10 +144,11 @@ public class UserRepo {
                 rs.next();
                 return rs.getString("token");
             } catch (SQLException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
 
+        connectionManager.closeConnection();
         return null;
     }
 
@@ -176,6 +184,7 @@ public class UserRepo {
                 String userSalt = rs.getString("salt");
                 user = new User(userId, userName, userEmail, userPassword, userSalt);
             }
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -202,7 +211,6 @@ public class UserRepo {
         }
 
         return makeUserFromResultSet(rs);
-
     }
 
     public static UserRepo getInstance() {
@@ -215,6 +223,7 @@ public class UserRepo {
         try {
             PreparedStatement stmt = con.prepareStatement("DELETE FROM `login-tokens` WHERE UserID = "+ userID +";");
             stmt.execute();
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -228,6 +237,7 @@ public class UserRepo {
                                                              "SET `name` = '" + name + "' " +
                                                              "WHERE `ID` = "+ userID +";");
             stmt.execute();
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -241,6 +251,7 @@ public class UserRepo {
                                                              "SET `email` = '" + email + "' " +
                                                              "WHERE `ID` = "+ userID +";");
             stmt.execute();
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -255,6 +266,7 @@ public class UserRepo {
                                                              "    `salt` = '" + salt + "' " +
                                                              "WHERE `ID` = "+ userID +";");
             stmt.execute();
+            connectionManager.closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }

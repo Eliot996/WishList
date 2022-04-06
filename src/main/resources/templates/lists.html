@@ -14,7 +14,7 @@
 
             <header th:insert="fragments/fragments.html :: header"></header>
 
-            <main  id="list-of-wishes-boundary">
+            <main id="list-of-wishes-boundary">
 
                 <section th:each="list : ${listOfWishlists}" class="list-box">
                     <div class="list-name">
@@ -26,13 +26,13 @@
                     </div>
                     <div class="list-buttons">
                         <a th:href="@{/wishlists/{wishlistID}(wishlistID=${list.getID()})}">
-                            <button class="button" >Del</button>
+                            <button class="button">Del</button>
                         </a>
                         <a th:href="@{/wishlists/{wishlistID}/edit(wishlistID=${list.getID()})}">
-                            <button class="button" >Rediger</button>
+                            <button class="button">Rediger</button>
                         </a>
-                        <a th:href="@{/wishlists/{wishlistID}/delete(wishlistID=${list.getID()})}">
-                            <button class="button" >Slet</button>
+                        <a th:href="@{/wishlists/{wishlistID}(wishlistID=${list.getID()})}">
+                            <button class="button">Se ønsker</button>
                         </a>
                     </div>
                 </section>
