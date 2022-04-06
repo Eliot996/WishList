@@ -99,6 +99,11 @@ button:hover{
     color: white;
 }
 
+.button-end-style{
+    display: flex;
+    justify-content: end;
+}
+
 /* Belongs to footer: */
 
 #footerstyle{
