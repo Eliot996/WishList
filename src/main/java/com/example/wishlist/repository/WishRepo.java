@@ -55,6 +55,7 @@ public class WishRepo {
             e.printStackTrace();
         }
 
+        CONNECTION_MANAGER.closeConnection();
         return wishes;
     }
 
@@ -84,6 +85,7 @@ public class WishRepo {
             e.printStackTrace();
         }
 
+        CONNECTION_MANAGER.closeConnection();
         return -1;
     }
 
@@ -110,6 +112,8 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        CONNECTION_MANAGER.closeConnection();
     }
 
     // TODO: 05/04/2022 needs refactoring
@@ -147,6 +151,7 @@ public class WishRepo {
             e.printStackTrace();
         }
 
+        CONNECTION_MANAGER.closeConnection();
         return wish;
     }
 
@@ -163,6 +168,8 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        CONNECTION_MANAGER.closeConnection();
     }
 
     public void updateLink(int wishlistID, int wishPosition, String link) {
@@ -177,6 +184,8 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        CONNECTION_MANAGER.closeConnection();
     }
 
     public void updateDescription(int wishlistID, int wishPosition, String description) {
@@ -191,6 +200,8 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        CONNECTION_MANAGER.closeConnection();
     }
 
     public void updateReserverID(int wishlistID, int wishPosition, int userID) {
@@ -211,6 +222,7 @@ public class WishRepo {
             e.printStackTrace();
         }
 
+        CONNECTION_MANAGER.closeConnection();
     }
 
     public void deleteWish(int wishlistID, int wishPosition) {
@@ -224,6 +236,8 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        CONNECTION_MANAGER.closeConnection();
     }
 
     public void deleteWishes(int wishlistID) {
@@ -236,5 +250,7 @@ public class WishRepo {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        CONNECTION_MANAGER.closeConnection();
     }
 }
