@@ -22,30 +22,30 @@
                 <div th:each="wish : ${wishlist.getWishes()}">
                     <section class="section-container">
                         <div class="list-of-items-space">
-                            <p th:text="${wish.getTitle()}">title</p>
+                            <h2 th:text="${wish.getTitle()}">title</h2>
                             <p>
                                 <a th:href="@{${wish.getLink()}}">
-                                    <button class="button button-style"> link </button>
+                                    <button class="button button-style"> link</button>
                                 </a>
                             </p>
-                            <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere
-                            </button>
-                        </div>
-<!--                        <div id="about-1-closed">&ndash;&gt;-->
-<!--                          <div id="text-about-1-open">&ndash;&gt;-->
-                                <p th:text="${wish.getDescription()}">
-                                    description
-                                </p>
-<!--                            </div>-->
-                        <div class="button-end-style">
-                            <div style="width: 12%">
+                            <div>
+                                <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere
+
+                                </button>
                                 <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/edit(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
                                     <button class="button button-style"> Rediger</button>
                                 </a>
                             </div>
                         </div>
 
-<!--                        </div>-->
+                        <div id="about-1-closed">
+                            <p th:text="${wish.getDescription()}">
+                                description
+                            </p>
+
+
+                        </div>
+
                         <hr>
                     </section>
 
@@ -54,9 +54,10 @@
                 </div>
 
                 <div class="section-container">
-                <a class="button-end-style" th:href="@{/wishlists/{wishlistID}/add-wish(wishlistID = ${wishlist.getID()})}">
-                    <button class="button button-style"> Tilføj ønske</button>
-                </a>
+                    <a class="button-end-style"
+                       th:href="@{/wishlists/{wishlistID}/add-wish(wishlistID = ${wishlist.getID()})}">
+                        <button class="button button-style"> Tilføj ønske</button>
+                    </a>
                 </div>
                 <div class="padding-div"></div>
 
