@@ -29,6 +29,7 @@
 /* belongs to header: */
 #header-box{
     margin-bottom: 20px;
+
 }
 
 #header-box-text{
@@ -49,14 +50,13 @@
 }
 
 
-
-#header-content-under-text{
+.header-content-under-text{
     display: flex;
     justify-content: space-between;
 }
 
-#create-new-list{
-    width: 45%;
+.create-new-list{
+    width: 100%;
 }
 #create-new-list-button{
     width: 100%;
@@ -65,7 +65,7 @@
 
 
 #login-register-buttons{
-    width: 48%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
