@@ -59,7 +59,7 @@ public class Controller {
         }
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
         model.addAttribute("user", new User());
         return "login";
     }
@@ -113,7 +113,7 @@ public class Controller {
 
         // return the page
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
         model.addAttribute("user", new User());
         return "registrer";
     }
@@ -151,7 +151,7 @@ public class Controller {
 
         // return the page
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
         model.addAttribute("user", USER_SERVICE.getUser(userID));
         return "edit_user";
     }
@@ -184,7 +184,7 @@ public class Controller {
             return "redirect:/login";
         }
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
         model.addAttribute("wishlist", new Wishlist());
         return "create_wishlist";
     }
@@ -213,7 +213,7 @@ public class Controller {
         // check session and redirect if the session is valid
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1 ) {
@@ -257,7 +257,7 @@ public class Controller {
                              @PathVariable() int wishlistID) {
         // check session and redirect if the session is invalid
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
@@ -290,7 +290,7 @@ public class Controller {
         }
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
         model.addAttribute("listOfWishlists", WISHLIST_SERVICE.getAllWishlistsFromUser(userID));
         return "lists";
     }
@@ -306,7 +306,7 @@ public class Controller {
         // check session and redirect if the session is invalid
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
@@ -339,7 +339,7 @@ public class Controller {
         // check session and redirect if the session is invalid
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
@@ -386,7 +386,7 @@ public class Controller {
         // check session and redirect if the session is invalid
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
@@ -436,7 +436,7 @@ public class Controller {
         // check session and redirect if the session is invalid
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
@@ -465,7 +465,7 @@ public class Controller {
         // check session and redirect if the session is invalid
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(0));
+        model.addAttribute("login", loginControls.get(1));
 
         int userID = checkTokenAndGetID(session);
         if (userID == -1){
