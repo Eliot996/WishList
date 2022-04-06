@@ -37,11 +37,13 @@
                                     description
                                 </p>
 <!--                            </div>-->
+                        <div class="button-end-style">
                             <div style="width: 12%">
                                 <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/edit(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
                                     <button class="button button-style"> Rediger</button>
                                 </a>
                             </div>
+                        </div>
 
 <!--                        </div>-->
                         <hr>
@@ -51,9 +53,12 @@
                     <div class="padding-div"></div>
                 </div>
 
-                <a th:href="@{/wishlists/{wishlistID}/add-wish(wishlistID = ${wishlist.getID()})}">
+                <div class="section-container">
+                <a class="button-end-style" th:href="@{/wishlists/{wishlistID}/add-wish(wishlistID = ${wishlist.getID()})}">
                     <button class="button button-style"> Tilføj ønske</button>
                 </a>
+                </div>
+                <div class="padding-div"></div>
 
             </main>
         </div>

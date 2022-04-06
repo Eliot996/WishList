@@ -21,7 +21,8 @@ hr{
     border: 1px solid #2e6285;
     color: #2e6285;
     background-color: #2e6285;
-    margin: auto;
+
+    margin-top: 10px;
 }
 
 .button-style{
