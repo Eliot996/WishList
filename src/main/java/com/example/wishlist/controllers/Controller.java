@@ -1,5 +1,6 @@
 package com.example.wishlist.controllers;
 
+import com.example.wishlist.models.HeaderControl;
 import com.example.wishlist.models.User;
 import com.example.wishlist.models.Wish;
 import com.example.wishlist.models.Wishlist;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -26,8 +29,17 @@ public class Controller {
     // *
     // *******************
 
+    //Found at: https://stackoverflow.com/questions/16194921/initializing-arraylist-with-some-predefined-values
+
+    private ArrayList<HeaderControl> createListcontrols = new ArrayList<HeaderControl>(Arrays.asList(new HeaderControl[] {new HeaderControl("createList"), new HeaderControl("listName")}));
+    private ArrayList<HeaderControl> loginControls = new ArrayList<HeaderControl>(Arrays.asList(new HeaderControl[] {new HeaderControl("login"), new HeaderControl("logout")}));
+
+
+
     @GetMapping("/")
-    public String landingPage() {
+    public String landingPage(Model model) {
+        model.addAttribute("list", createListcontrols.get(0));
+        model.addAttribute("login", loginControls.get(0));
         return "landingpage";
     }
 
@@ -74,7 +86,7 @@ public class Controller {
     public String logout(HttpSession session) {
         // check session and break the token if it exists
         int userID = checkTokenAndGetID(session);
-        if (userID != -1 ) {
+            if (userID != -1 ) {
             USER_SERVICE.breakToken(userID);
         }
 

@@ -7,50 +7,77 @@
 </head>
 <body>
 
-<header id="header-box" th:fragment="header">
+<header id="header-box"   th:fragment="header">
     <div id="header-box-text">
         <a style="text-decoration: none" href="/">
-        <h1 id="header-text">
-            Wishlist Kea
-        </h1>
+            <h1 id="header-text">
+                Wishlist Kea
+            </h1>
         </a>
     </div>
 
-    <div id="header-content-under-text">
+    <div class="header-content-under-text">
 
-        <div id="create-new-list">
-            <a href="/wishlists">
-            <button class="button" id="create-new-list-button">Lav ny liste</button>
-            </a>
-        </div>
+        <section style="width: 100%" th:switch="${list.getValue()}" class="header-content-under-text">
 
-
-        <div id="login-register-buttons">
-            <a href="/login">
-            <div id="log-in">
-                <button class="button" id="log-in-button">Log Ind</button>
-            </a>
+            <div th:case="'createList'" class="create-new-list">
+                <a href="/wishlists">
+                    <button class="button" id="create-new-list-button">Lav ny liste</button>
+                </a>
+            </div>
+            <div th:case="'listName'"  class="create-new-list">
+                <a href="/lists">
+                    <div class="button" id="create-new-list-button">"Liste Navn"</div>
+                </a>
             </div>
 
-            <a href="/registrer">
+        </section>
+
+
+        <section style="width: 100%" th:switch="${login.getValue()}" >
+            <div th:case="'login'" id="login-register-buttons">
+                <div id="log-in">
+                    <a href="/login">
+                        <button class="button" id="log-in-button">Log Ind</button>
+                    </a>
+                </div>
+
                 <div id="register">
-                <button class="button" id="register-button">Registrer</button>
-            </a>
+                    <a href="/registrer">
+                        <button class="button" id="register-button">Registrer</button>
+                    </a>
+                </div>
             </div>
-        </div>
+
+            <div th:case="'logout'" id="login-register-buttons">
+                <div id="log-in">
+                    <a href="/login">
+                        <button class="button" id="log-in-button">Log Ud</button>
+                    </a>
+                </div>
+
+                <div id="register">
+                    <a href="/registrer">
+                        <button class="button" id="register-button">Konto</button>
+                    </a>
+                </div>
+            </div>
+        </section>
     </div>
+
+
 
 </header>
 
-<footer id="footerstyle" th:fragment="footer" >
+<footer id="footerstyle" th:fragment="footer">
     <div id="footer-overskrift">
         <p>
             <br>
-            <a href="https://github.com/Eliot996/Madspild" style="color: lightskyblue" >
+            <a href="https://github.com/Eliot996/Madspild" style="color: lightskyblue">
                 Github Repository
             </a>
             <br>
-            <a href="https://github.com/Eliot996" style="color: lightskyblue"  >
+            <a href="https://github.com/Eliot996" style="color: lightskyblue">
                 <br> Mathias Eliot Nielsen
             </a>
             <a href="https://github.com/sofiaabrahamsen" style="color: lightskyblue">
@@ -59,7 +86,7 @@
             <a href="https://github.com/lass026q" style="color: lightskyblue">
                 <br> Lasse Bøgeskov-Jensen
             </a>
-            <a href="https://github.com/H4ppyN4p" style="color: lightskyblue" >
+            <a href="https://github.com/H4ppyN4p" style="color: lightskyblue">
                 <br> Tobias Hammeken Arboe
             </a>
             <br>
