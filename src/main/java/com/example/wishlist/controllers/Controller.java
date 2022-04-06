@@ -59,7 +59,7 @@ public class Controller {
         }
 
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(1));
+        model.addAttribute("login", loginControls.get(0));
         model.addAttribute("user", new User());
         return "login";
     }
@@ -113,7 +113,7 @@ public class Controller {
 
         // return the page
         model.addAttribute("list", createListcontrols.get(0));
-        model.addAttribute("login", loginControls.get(1));
+        model.addAttribute("login", loginControls.get(0));
         model.addAttribute("user", new User());
         return "registrer";
     }
