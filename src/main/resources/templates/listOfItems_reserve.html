@@ -25,44 +25,40 @@
                             <p th:text="${wish.getTitle()}">title</p>
                             <p>
                                 <a th:href="@{${wish.getLink()}}">
-                                    <button class="button button-style"> link </button>
+                                    <button class="button button-style"> link</button>
                                 </a>
                             </p>
-                            <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere
-                            </button>
+
+                            <div th:if="${wish.getReserverID() == 0}">
+                                <div style="width: 12%">
+                                    <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                        <button class="button button-style"> Reserver</button>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div th:if="${wish.getReserverID() == 1}">
+                                <div style="width: 12%">
+                                    <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                        <button class="button button-style"> Fortryd reservation</button>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div th:if="${wish.getReserverID() == 2}">
+                                <div style="width: 12%">
+                                    <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                        <button class="button button-style"> Reserveret</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        <!--                        <div id="about-1-closed">&ndash;&gt;-->
-                        <!--                          <div id="text-about-1-open">&ndash;&gt;-->
+
                         <p th:text="${wish.getDescription()}">
                             description
                         </p>
-                        <!--                            </div>-->
-                        <div th:if="${wish.getReserverID() == 0}">
-                            <div style="width: 12%">
-                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
-                                    <button class="button button-style"> Reserver</button>
-                                </a>
-                            </div>
-                        </div>
-                        <div th:if="${wish.getReserverID() == 1}">
-                            <div style="width: 12%">
-                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
-                                    <button class="button button-style"> Fortryd reservation</button>
-                                </a>
-                            </div>
-                        </div>
-                        <div th:if="${wish.getReserverID() == 2}">
-                            <div style="width: 12%">
-                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
-                                    <button class="button button-style"> Reserveret</button>
-                                </a>
-                            </div>
-                        </div>
-
-                        <!--                        </div>-->
                         <hr>
                     </section>
-
 
                     <div class="padding-div"></div>
                 </div>
