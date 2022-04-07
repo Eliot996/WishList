@@ -99,6 +99,14 @@ button:hover{
     color: white;
 }
 
+.button-spacing{
+    margin: 0 1.5%;
+}
+
+.button-spacing-last{
+    margin-right: 3%;
+}
+
 .button-end-style{
     display: flex;
     justify-content: end;
