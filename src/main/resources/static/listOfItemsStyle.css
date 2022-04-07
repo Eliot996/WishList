@@ -25,6 +25,10 @@ hr{
     margin-top: 10px;
 }
 
+a {
+    text-decoration: none !important; /* no underline */
+}
+
 .button-style{
     width: 10%;
     min-width: 100px;
