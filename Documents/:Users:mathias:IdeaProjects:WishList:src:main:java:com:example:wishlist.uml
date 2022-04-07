@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/Users/mathias/IdeaProjects/WishList/src/main/java/com/example/wishlist</OriginalElement>
+  <nodes>
+    <node x="1492.5" y="298.5">com.example.wishlist.repository.WishRepo</node>
+    <node x="1910.5" y="1640.5">com.example.wishlist.services.UserService</node>
+    <node x="2307.0" y="1627.5">com.example.wishlist.repository.UserRepo</node>
+    <node x="438.5" y="25.5">com.example.wishlist.repository.WishlistRepo</node>
+    <node x="38.5" y="377.5">com.example.wishlist.services.WishlistService</node>
+    <node x="2338.5" y="24.5">com.example.wishlist.repository.ConnectionManager</node>
+    <node x="1936.0" y="1170.5">com.example.wishlist.models.User</node>
+    <node x="1056.0" y="981.5">com.example.wishlist.WishListApplication</node>
+    <node x="1150.5" y="704.5">com.example.wishlist.services.WishService</node>
+    <node x="461.5" y="321.5">com.example.wishlist.models.Wishlist</node>
+    <node x="1481.5" y="1050.5">com.example.wishlist.controllers.Controller</node>
+    <node x="792.0" y="276.5">com.example.wishlist.models.Wish</node>
+    <node x="1244.5" y="1669.5">com.example.wishlist.models.HeaderControl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.services.UserService" relationship="TO_ONE">
+      <point x="-198.5" y="20.0" />
+      <point x="1242.5" y="1340.0" />
+      <point x="1242.5" y="1865.0" />
+      <point x="-169.5" y="65.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.services.WishlistService" relationship="CREATE">
+      <point x="-198.5" y="10.0" />
+      <point x="36.5" y="1330.0" />
+      <point x="36.5" y="460.0" />
+      <point x="-161.5" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.models.Wishlist" target="com.example.wishlist.models.Wish" relationship="DEPENDENCY">
+      <point x="5.0" y="-138.5" />
+      <point x="605.0" y="274.5" />
+      <point x="940.0" y="274.5" />
+      <point x="0.0" y="-183.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.WishRepo" target="com.example.wishlist.repository.ConnectionManager" relationship="TO_ONE">
+      <point x="147.5" y="0.0" />
+      <point x="2455.0" y="460.0" />
+      <point x="-5.0" y="95.5" />
+    </edge>
+    <edge source="com.example.wishlist.services.UserService" target="com.example.wishlist.repository.UserRepo" relationship="TO_ONE">
+      <point x="0.0" y="159.5" />
+      <point x="2080.0" y="1974.5" />
+      <point x="2460.0" y="1974.5" />
+      <point x="0.0" y="172.5" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishlistService" target="com.example.wishlist.repository.WishlistRepo" relationship="TO_ONE">
+      <point x="-0.0" y="-82.5" />
+      <point x="200.0" y="115.0" />
+      <point x="-161.5" y="-5.0" />
+    </edge>
+    <edge source="com.example.wishlist.models.Wishlist" target="com.example.wishlist.models.Wish" relationship="TO_MANY">
+      <point x="138.5" y="0.0" />
+      <point x="-148.0" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.models.User" relationship="CREATE">
+      <point x="198.5" y="0.0" />
+      <point x="-144.0" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishService" target="com.example.wishlist.repository.WishRepo" relationship="TO_ONE">
+      <point x="5.0" y="-115.5" />
+      <point x="1305.0" y="465.0" />
+      <point x="-147.5" y="5.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.models.HeaderControl" relationship="TO_MANY">
+      <point x="-198.5" y="30.0" />
+      <point x="1340.0" y="1350.0" />
+      <point x="-0.0" y="-50.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.UserRepo" target="com.example.wishlist.models.User" relationship="CREATE">
+      <point x="-20.75" y="-172.5" />
+      <point x="2439.25" y="1320.0" />
+      <point x="144.0" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.services.UserService" target="com.example.wishlist.models.User" relationship="CREATE">
+      <point x="0.0" y="-159.5" />
+      <point x="0.0" y="149.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.WishlistRepo" target="com.example.wishlist.models.Wishlist" relationship="CREATE">
+      <point x="-5.0" y="94.5" />
+      <point x="-5.0" y="-138.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.UserRepo" target="com.example.wishlist.repository.ConnectionManager" relationship="DEPENDENCY">
+      <point x="153.0" y="0.0" />
+      <point x="2615.0" y="1800.0" />
+      <point x="2615.0" y="120.0" />
+      <point x="121.5" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.services.WishlistService" relationship="TO_ONE">
+      <point x="-198.5" y="0.0" />
+      <point x="200.0" y="1320.0" />
+      <point x="-0.0" y="82.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.WishRepo" target="com.example.wishlist.repository.ConnectionManager" relationship="DEPENDENCY">
+      <point x="-0.0" y="-161.5" />
+      <point x="1640.0" y="125.5" />
+      <point x="-121.5" y="5.5" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishService" target="com.example.wishlist.models.Wish" relationship="DEPENDENCY">
+      <point x="-5.0" y="-115.5" />
+      <point x="1295.0" y="645.5" />
+      <point x="945.0" y="645.5" />
+      <point x="5.0" y="183.5" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishService" target="com.example.wishlist.models.Wishlist" relationship="DEPENDENCY">
+      <point x="-149.5" y="0.0" />
+      <point x="605.0" y="820.0" />
+      <point x="5.0" y="138.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.UserRepo" target="com.example.wishlist.repository.ConnectionManager" relationship="TO_ONE">
+      <point x="5.0" y="-172.5" />
+      <point x="5.0" y="95.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.WishlistRepo" target="com.example.wishlist.repository.ConnectionManager" relationship="TO_ONE">
+      <point x="0.0" y="-94.5" />
+      <point x="600.0" y="22.5" />
+      <point x="2460.0" y="22.5" />
+      <point x="0.0" y="-95.5" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.services.UserService" relationship="CREATE">
+      <point x="5.0" y="269.5" />
+      <point x="1685.0" y="1795.0" />
+      <point x="-169.5" y="-5.0" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishlistService" target="com.example.wishlist.models.Wishlist" relationship="DEPENDENCY">
+      <point x="161.5" y="5.0" />
+      <point x="-138.5" y="5.0" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishService" target="com.example.wishlist.repository.WishRepo" relationship="DEPENDENCY">
+      <point x="149.5" y="-5.0" />
+      <point x="1640.0" y="815.0" />
+      <point x="-0.0" y="161.5" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.models.Wishlist" relationship="CREATE">
+      <point x="-198.5" y="-10.0" />
+      <point x="595.0" y="1310.0" />
+      <point x="-5.0" y="138.5" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.models.HeaderControl" relationship="CREATE">
+      <point x="-5.0" y="269.5" />
+      <point x="1675.0" y="1720.0" />
+      <point x="95.5" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.services.WishService" relationship="CREATE">
+      <point x="-0.0" y="-269.5" />
+      <point x="1680.0" y="825.0" />
+      <point x="149.5" y="5.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.models.Wish" relationship="CREATE">
+      <point x="-198.5" y="-20.0" />
+      <point x="924.0" y="1300.0" />
+      <point x="-16.0" y="183.5" />
+    </edge>
+    <edge source="com.example.wishlist.services.UserService" target="com.example.wishlist.repository.UserRepo" relationship="DEPENDENCY">
+      <point x="169.5" y="0.0" />
+      <point x="-153.0" y="0.0" />
+    </edge>
+    <edge source="com.example.wishlist.repository.WishlistRepo" target="com.example.wishlist.repository.ConnectionManager" relationship="DEPENDENCY">
+      <point x="161.5" y="-4.5" />
+      <point x="-121.5" y="-4.5" />
+    </edge>
+    <edge source="com.example.wishlist.services.WishlistService" target="com.example.wishlist.repository.WishlistRepo" relationship="DEPENDENCY">
+      <point x="161.5" y="-5.0" />
+      <point x="361.5" y="197.51918886144804" />
+      <point x="400.2038377722896" y="197.51918886144804" />
+      <point x="400.2038377722896" y="125.0" />
+      <point x="-161.5" y="5.0" />
+    </edge>
+    <edge source="com.example.wishlist.controllers.Controller" target="com.example.wishlist.services.WishService" relationship="TO_ONE">
+      <point x="-198.5" y="-30.0" />
+      <point x="1300.0" y="1290.0" />
+      <point x="-0.0" y="115.5" />
+    </edge>
+    <edge source="com.example.wishlist.repository.WishRepo" target="com.example.wishlist.models.Wish" relationship="CREATE">
+      <point x="-147.5" y="-5.0" />
+      <point x="148.0" y="-5.0" />
+    </edge>
+  </edges>
+  <settings layout="Compact" zoom="0.46507015934443785" showDependencies="true" x="1180.14011018441" y="806.0295271702236" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
