@@ -24,11 +24,13 @@
                         <div class="list-of-items-space">
                             <h2 th:text="${wish.getTitle()}">title</h2>
                             <div class="list-of-items-buttons">
-                                <button th:id="${wish.getPosition()}" onclick="seeMore(this.id)" class="button-style button"> Se Mere</button>
-                                <a th:href="@{${wish.getLink()}}">
-                                    <button class="button button-style"> link</button>
+                                <button th:id="${wish.getPosition()}" onclick="seeMore(this.id)" class="button-style button button-spacing"> Se Mere</button>
+                                <a class="button-spacing" th:href="@{${wish.getLink()}}">
+                                    <button class="button button-style">
+                                        link
+                                    </button>
                                 </a>
-                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                <a class="button-spacing" th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
                                     <button class="button button-reserve-style">
                                         <span th:if="${wish.getReserverID() == 0}"> Reserver </span>
                                         <span th:if="${wish.getReserverID() == 1}"> Fortryd reservation </span>
