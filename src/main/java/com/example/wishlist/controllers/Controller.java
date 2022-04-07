@@ -243,7 +243,7 @@ public class Controller {
             WISHLIST_SERVICE.update(oldWishlist, wishlist);
         }
 
-        return "redirect:/wishlists/" + wishlistID;
+        return "redirect:/wishlists";
     }
 
     // *******************

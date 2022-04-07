@@ -13,7 +13,7 @@
 
             <header th:insert="fragments/fragments.html :: header"> </header>
             <div>
-                <form action="#" th:action="@{/edit-wishlist/{wishlistID}(wishlistID=${wishlist.getID()})}"
+                <form action="#" th:action="@{/wishlists/{wishlistID}/edit(wishlistID=${wishlist.getID()})}"
                       th:object="${wishlist}" method="post">
 
                     <div class="container">
