@@ -22,41 +22,30 @@
                 <div th:each="wish : ${wishlist.getWishes()}">
                     <section class="section-container">
                         <div class="list-of-items-space">
-                            <p th:text="${wish.getTitle()}">title</p>
-                            <p>
+                            <h2 th:text="${wish.getTitle()}">title</h2>
+                            <div>
+                                <button th:id="${wish.getPosition()}" onclick="seeMore(this.id)" class="button-style button"> Se Mere</button>
                                 <a th:href="@{${wish.getLink()}}">
                                     <button class="button button-style"> link</button>
                                 </a>
-                            </p>
+                                <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
+                                    <button class="button button-style">
+                                        <span th:if="${wish.getReserverID() == 0}"> Reserver </span>
+                                        <span th:if="${wish.getReserverID() == 1}"> Fortryd reservation </span>
+                                        <span th:if="${wish.getReserverID() == 2}"> Reserveret </span>
+                                    </button>
+                                </a>
 
-                            <div th:if="${wish.getReserverID() == 0}">
-                                <div style="width: 12%">
-                                    <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
-                                        <button class="button button-style"> Reserver</button>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div th:if="${wish.getReserverID() == 1}">
-                                <div style="width: 12%">
-                                    <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
-                                        <button class="button button-style"> Fortryd reservation</button>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div th:if="${wish.getReserverID() == 2}">
-                                <div style="width: 12%">
-                                    <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/reserve(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
-                                        <button class="button button-style"> Reserveret</button>
-                                    </a>
-                                </div>
                             </div>
                         </div>
 
-                        <p th:text="${wish.getDescription()}">
-                            description
-                        </p>
+                        <div th:id="${wish.getPosition()} + '-dropdown'" class="closed">
+                            <p th:text="${wish.getDescription()}">
+                                description
+                            </p>
+
+
+                        </div>
                         <hr>
                     </section>
 
@@ -74,16 +63,12 @@
     sectionOneInfo = false;
 
     function seeMore(sectionID) {
-        switch (sectionID) {
-            case "button1":
-                if (sectionOneInfo === false) {
-                    document.getElementById("about-1-closed").id = "about-1-open";
-                    sectionOneInfo = true;
-                } else if (sectionOneInfo === true) {
-                    document.getElementById("about-1-open").id = "about-1-closed";
-                    sectionOneInfo = false
-                }
-                break;
+        if (document.getElementById(sectionID + "-dropdown").className === "open") {
+            document.getElementById(sectionID + "-dropdown").className = "closed";
+
+        } else if (document.getElementById(sectionID + "-dropdown").className === "closed") {
+            document.getElementById(sectionID + "-dropdown").className = "open";
+
         }
     }
 </script>
