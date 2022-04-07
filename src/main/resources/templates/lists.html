@@ -25,9 +25,7 @@
                         </h2>
                     </div>
                     <div class="list-buttons">
-                        <a th:href="@{/wishlists/{wishlistID}(wishlistID=${list.getID()})}">
-                            <button class="button">Del</button>
-                        </a>
+                        <button th:id="${list.getID()}" class="button" onclick="copyLink(this.id)">Del</button>
                         <a th:href="@{/wishlists/{wishlistID}/edit(wishlistID=${list.getID()})}">
                             <button class="button">Rediger</button>
                         </a>
@@ -53,4 +51,16 @@
 
 
 </body>
+<script>
+    function copyLink(id) {
+        /* Get the text field */
+        var website = document.location.href + "/";
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(website + id);
+
+        /* Alert the copied text */
+        alert("Kopieret link");
+    }
+</script>
 </html>
