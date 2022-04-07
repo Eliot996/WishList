@@ -21,12 +21,12 @@
         <section style="width: 100%" th:switch="${list.getValue()}" class="header-content-under-text">
 
             <div th:case="'createList'" class="create-new-list">
-                <a href="/wishlists">
+                <a th:href="@{/create-wishlist}">
                     <button class="button" id="create-new-list-button">Lav ny liste</button>
                 </a>
             </div>
             <div th:case="'listName'"  class="create-new-list">
-                <a href="/lists">
+                <a th:href="@{/wishlists}">
                     <div class="button" id="create-new-list-button">"Liste Navn"</div>
                 </a>
             </div>
@@ -37,13 +37,13 @@
         <section style="width: 100%" th:switch="${login.getValue()}" >
             <div th:case="'login'" id="login-register-buttons">
                 <div id="log-in">
-                    <a href="/login">
+                    <a th:href="@{/login}">
                         <button class="button" id="log-in-button">Log Ind</button>
                     </a>
                 </div>
 
                 <div id="register">
-                    <a href="/registrer">
+                    <a th:href="@{/registrer}">
                         <button class="button" id="register-button">Registrer</button>
                     </a>
                 </div>
@@ -51,13 +51,13 @@
 
             <div th:case="'logout'" id="login-register-buttons">
                 <div id="log-in">
-                    <a href="/login">
+                    <a th:href="@{/logout}">
                         <button class="button" id="log-in-button">Log Ud</button>
                     </a>
                 </div>
 
                 <div id="register">
-                    <a href="/registrer">
+                    <a th:href="@{/edit}">
                         <button class="button" id="register-button">Konto</button>
                     </a>
                 </div>
