@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${wishlist.getName()} + 'ønskeliste'"></title>
+    <title th:text="'Ønskeliste: ' + ${wishlist.getName()}"></title>
     <link rel="stylesheet" th:href="@{/generalStyle.css}">
     <link rel="stylesheet" th:href="@{/listOfItemsStyle.css}">
 
