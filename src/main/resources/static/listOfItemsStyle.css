@@ -11,6 +11,18 @@
     height: 50px;
 }
 
+h2{
+    overflow: hidden;
+    width: 40%;
+}
+
+.list-of-items-buttons{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .section-container{
     width: 90%;
     margin: auto;
@@ -33,6 +45,13 @@ a {
     width: 10%;
     min-width: 100px;
     height: 30px;
+}
+
+.button-reserve-style{
+    width: 10%;
+    min-width: 150px;
+    height: 30px;
+
 }
 
 .closed{
