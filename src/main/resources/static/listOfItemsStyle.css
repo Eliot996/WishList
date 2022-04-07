@@ -31,14 +31,14 @@ hr{
     height: 30px;
 }
 
-#about-1-closed{
+.closed{
     display: flex;
     height: 0;
     min-height: 0;
     overflow: hidden;
 }
 
-#about-1-open{
+.open{
     display: flex;
     min-height: 0;
     overflow: hidden;

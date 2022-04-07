@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${wishlist.getName()} + 'ønskeliste'"></title>
     <link rel="stylesheet" th:href="@{/generalStyle.css}">
     <link rel="stylesheet" th:href="@{/listOfItemsStyle.css}">
 
@@ -38,11 +38,10 @@
                             </div>
                         </div>
 
-                        <div id="about-1-closed">
+                        <div th:id="${wish.getPosition()} + '-dropdown'" class="closed">
                             <p th:text="${wish.getDescription()}">
                                 description
                             </p>
-
 
                         </div>
 
@@ -73,16 +72,12 @@
     sectionOneInfo = false;
 
     function seeMore(sectionID) {
-        switch (sectionID) {
-            case "button1":
-                if (sectionOneInfo === false) {
-                    document.getElementById("about-1-closed").id = "about-1-open";
-                    sectionOneInfo = true;
-                } else if (sectionOneInfo === true) {
-                    document.getElementById("about-1-open").id = "about-1-closed";
-                    sectionOneInfo = false
-                }
-                break;
+        if (document.getElementById(sectionID + "-dropdown").className === "open") {
+            document.getElementById(sectionID + "-dropdown").className = "closed";
+
+        } else if (document.getElementById(sectionID + "-dropdown").className === "closed") {
+                   document.getElementById(sectionID + "-dropdown").className = "open";
+
         }
     }
 </script>
