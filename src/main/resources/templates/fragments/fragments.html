@@ -21,8 +21,8 @@
         <section style="width: 100%" th:switch="${list.getValue()}" class="header-content-under-text">
 
             <div th:case="'createList'" class="create-new-list">
-                <a th:href="@{/create-wishlist}">
-                    <button class="button" id="create-new-list-button">Lav ny liste</button>
+                <a th:href="@{/wishlists}">
+                    <button class="button" id="create-new-list-button">Se dine ønskelister</button>
                 </a>
             </div>
             <div th:case="'listName'"  class="create-new-list">
