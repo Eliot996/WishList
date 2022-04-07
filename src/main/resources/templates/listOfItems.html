@@ -29,7 +29,7 @@
                                 </a>
                             </p>
                             <div>
-                                <button id="button1" onclick="seeMore(this.id)" class="button-style button"> Se Mere
+                                <button th:id="${wish.getPosition()}" onclick="seeMore(this.id)" class="button-style button"> Se Mere
 
                                 </button>
                                 <a th:href="@{/wishlists/{wishlistID}/{wishPosition}/edit(wishlistID = ${wishlist.getID()}, wishPosition = ${wish.getPosition()})}">
